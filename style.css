@@ -1362,3 +1362,76 @@ select:focus-visible {
         transition-duration: 0.01ms !important;
     }
 }
+.profile-photo {
+    width: min(100%, 350px);
+    margin-inline: auto;
+    justify-self: center;
+    overflow: hidden;
+    border: 2px solid var(--blue-dusk);
+    box-shadow:
+        9px 9px 0 var(--crystal-blue),
+        15px 15px 0 var(--manila);
+}
+
+.profile-photo img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 689 / 1000;
+    object-fit: cover;
+    object-position: center;
+}
+
+@media (max-width: 1000px) {
+    .profile-photo {
+        width: min(100%, 310px);
+    }
+}
+
+@media (max-width: 700px) {
+    .profile-hero {
+        padding-top: 48px;
+        padding-bottom: 70px;
+        gap: 38px;
+    }
+
+    .profile-photo {
+        width: min(68vw, 250px);
+        margin: 0 auto;
+        box-shadow:
+            7px 7px 0 var(--crystal-blue),
+            12px 12px 0 var(--manila);
+    }
+
+    .profile-photo img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 689 / 1000;
+        object-fit: cover;
+        object-position: center;
+    }
+}
+.home-latest,
+.blog-library {
+    background:
+        radial-gradient(
+            circle at 50% 10%,
+            rgba(255, 247, 137, 0.38) 0%,
+            rgba(255, 247, 137, 0.18) 30%,
+            rgba(255, 247, 137, 0.06) 55%,
+            transparent 75%
+        ),
+        linear-gradient(
+            135deg,
+            #f9fcff 0%,
+            #fffef0 45%,
+            #fffde1 65%,
+            #f9fcff 100%
+        );
+}
+
+.home-latest::before,
+.home-latest::after,
+.blog-library::before,
+.blog-library::after {
+    display: none;
+}
