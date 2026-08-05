@@ -1,124 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <meta
         name="description"
-        content="Profile of Angel Mig G. Fucoy"
+        content="Projects from XOXO Learning Diaries"
     >
-    <title>Profile | XOXO Learning Diaries</title>
+
+    <meta name="theme-color" content="#f9fcff">
+
+    <link
+        rel="icon"
+        href="favicon.svg"
+        type="image/svg+xml"
+    >
+
     <link rel="stylesheet" href="style.css">
+
+    <title>Projects | XOXO Learning Diaries</title>
 </head>
 
-<body>
+<body data-category="Project">
 
 <header class="navbar">
-    <a href="index.html" class="logo">XOXO.</a>
+
+    <a
+        href="index.html"
+        class="logo"
+        aria-label="XOXO Learning Diaries home"
+    >
+        XOXO.
+    </a>
 
     <nav aria-label="Main navigation">
         <a href="index.html">HOME</a>
-        <a href="blog.html">BLOG</a>
-        <a href="profile.html" class="active">PROFILE</a>
+        <a href="blog.html" class="active">BLOG</a>
+        <a href="profile.html">PROFILE</a>
     </nav>
+
 </header>
 
 <main>
 
-    <section class="profile-hero">
+    <section class="blog-section">
 
-        <div class="profile-photo">
-            <img
-                src="angel.jpg"
-                alt="Angel Mig G. Fucoy"
-            >
-        </div>
+        <div class="section-top">
 
-        <div class="profile-copy">
+            <div>
 
-            <p class="profile-kicker">
-                THE PERSON BEHIND XOXO
+                <p class="section-label">
+                    WHAT I CREATE
+                </p>
+
+                <h1 class="page-heading">
+                    My projects and
+                    <span>creative outputs.</span>
+                </h1>
+
+            </div>
+
+            <p class="section-note">
+                Programming exercises, digital outputs,
+                and technology projects I have created.
             </p>
-
-            <h1>
-                Hello, I'm
-                <span>Angel.</span>
-            </h1>
-
-            <p>
-                I am a Bachelor of Science in Information Technology
-                student documenting my growth through lessons,
-                activities, projects, challenges, and personal
-                reflections.
-            </p>
-
-            <p>
-                XOXO Learning Diaries is my personal space for keeping
-                the moments that helped me learn, create, improve, and
-                understand myself as a student.
-            </p>
-
-            <a href="blog.html" class="enter-button">
-                READ MY DIARIES
-                <span>→</span>
-            </a>
 
         </div>
 
-    </section>
-
-    <section class="profile-details">
-
         <a
-            href="lessons.html"
-            class="detail-card blue-detail"
-            aria-label="Open my lessons page"
+            href="profile.html"
+            class="enter-button"
         >
-            <p>01</p>
-
-            <h2>What I Learn</h2>
-
-            <span>
-                Concepts, discussions, skills, and discoveries
-                from my academic subjects.
-            </span>
-
-            <strong>VIEW LESSONS →</strong>
+            ← BACK TO PROFILE
         </a>
 
-        <a
-            href="projects.html"
-            class="detail-card yellow-detail"
-            aria-label="Open my projects page"
+        <div
+            class="blog-grid category-grid"
+            id="categoryGrid"
         >
-            <p>02</p>
 
-            <h2>What I Create</h2>
+            <p class="loading-state">
+                Loading project entries...
+            </p>
 
-            <span>
-                Activities, digital outputs, programming exercises,
-                and technology projects.
-            </span>
-
-            <strong>VIEW PROJECTS →</strong>
-        </a>
-
-        <a
-            href="reflections.html"
-            class="detail-card white-detail"
-            aria-label="Open my reflections page"
-        >
-            <p>03</p>
-
-            <h2>How I Grow</h2>
-
-            <span>
-                Honest reflections about my progress, challenges,
-                mistakes, and achievements.
-            </span>
-
-            <strong>VIEW REFLECTIONS →</strong>
-        </a>
+        </div>
 
     </section>
 
@@ -127,8 +98,18 @@
 <footer>
 
     <div class="footer-left">
-        <a href="index.html" class="footer-logo">XOXO.</a>
-        <p>My personal learning diary.</p>
+
+        <a
+            href="index.html"
+            class="footer-logo"
+        >
+            XOXO.
+        </a>
+
+        <p>
+            Learning, creating, and growing one entry at a time.
+        </p>
+
     </div>
 
     <div class="footer-center">
@@ -142,6 +123,8 @@
     </div>
 
 </footer>
+
+<script type="module" src="category.js"></script>
 
 </body>
 </html>

@@ -1,26 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <meta
         name="description"
         content="XOXO Learning Diaries by Angel Mig G. Fucoy"
     >
-    <title>XOXO Learning Diaries | Angel Mig G. Fucoy</title>
+
+    <meta name="theme-color" content="#f9fcff">
+
+    <link
+        rel="icon"
+        href="favicon.svg"
+        type="image/svg+xml"
+    >
+
     <link rel="stylesheet" href="style.css">
+
+    <title>
+        XOXO Learning Diaries | Angel Mig G. Fucoy
+    </title>
 </head>
 
-<body>
+<body data-page="home">
 
 <header class="navbar">
-    <a href="index.html" class="logo">XOXO.</a>
+
+    <a
+        href="index.html"
+        class="logo"
+        aria-label="XOXO Learning Diaries home"
+    >
+        XOXO.
+    </a>
 
     <nav aria-label="Main navigation">
         <a href="index.html" class="active">HOME</a>
         <a href="blog.html">BLOG</a>
         <a href="profile.html">PROFILE</a>
     </nav>
+
 </header>
 
 <main>
@@ -39,17 +65,18 @@
                 <span>DIARIES</span>
             </h1>
 
-            <div class="line"></div>
+            <div class="line" aria-hidden="true"></div>
 
             <p class="description">
-                A personal collection of the lessons, activities,
-                projects, experiences, and reflections that shape
-                my academic journey.
+                A growing collection of the lessons I understand,
+                the projects I create, and the experiences that
+                continue to shape me as an Information Technology
+                student.
             </p>
 
             <a href="blog.html" class="enter-button">
                 ENTER MY DIARY
-                <span>♡</span>
+                <span aria-hidden="true">♡</span>
             </a>
 
         </div>
@@ -60,19 +87,23 @@
 
                 <div class="id-header">
                     <span>STUDENT PASS</span>
-                    <span>✦ ✦ ✦</span>
+                    <span aria-hidden="true">✦ ✦ ✦</span>
                 </div>
 
                 <div class="id-photo">
+
                     <img
                         src="angel.jpg"
                         alt="Angel Mig G. Fucoy"
+                        decoding="async"
+                        fetchpriority="high"
                     >
+
                 </div>
 
                 <h2 class="id-name">
                     Angel Mig G. Fucoy
-                    <span>♥</span>
+                    <span aria-hidden="true">♥</span>
                 </h2>
 
                 <p class="course">
@@ -104,35 +135,145 @@
 
         </div>
 
-        <div class="sparkle sparkle-one">✦</div>
-        <div class="sparkle sparkle-two">✧</div>
+        <div
+            class="sparkle sparkle-one"
+            aria-hidden="true"
+        >
+            ✦
+        </div>
+
+        <div
+            class="sparkle sparkle-two"
+            aria-hidden="true"
+        >
+            ✧
+        </div>
 
     </section>
 
-    <section class="blog-section" id="blog">
+    <section class="blog-section home-latest">
 
         <div class="section-top">
 
             <div>
-                <p class="section-label">LATEST ENTRIES</p>
+
+                <p class="section-label">
+                    LATEST ENTRIES
+                </p>
 
                 <h2>
-                    Little pieces of
-                    <span>my journey.</span>
+                    Recently added to
+                    <span>my diary.</span>
                 </h2>
+
             </div>
 
             <p class="section-note">
-                Original stories and reflections from<br>
-                my life as an Information Technology student.
+                My newest lessons, projects, experiences,
+                and reflections.
             </p>
 
         </div>
 
         <div class="blog-grid" id="blogGrid">
+
             <p class="loading-state">
                 Loading diary entries...
             </p>
+
+        </div>
+
+        <div class="latest-actions">
+
+            <a
+                href="blog.html"
+                class="secondary-link-button"
+            >
+                VIEW ALL ENTRIES
+                <span aria-hidden="true">→</span>
+            </a>
+
+        </div>
+
+    </section>
+
+    <section class="journal-paths">
+
+        <div class="journal-paths-heading">
+
+            <p class="section-label">
+                EXPLORE MY JOURNEY
+            </p>
+
+            <h2>
+                Three parts of
+                <span>my story.</span>
+            </h2>
+
+        </div>
+
+        <div class="journal-paths-grid">
+
+            <a
+                href="lessons.html"
+                class="journal-path-card path-blue"
+            >
+
+                <span class="path-number">
+                    01
+                </span>
+
+                <div>
+                    <p>WHAT I LEARN</p>
+                    <h3>Lessons</h3>
+                </div>
+
+                <strong>
+                    EXPLORE →
+                </strong>
+
+            </a>
+
+            <a
+                href="projects.html"
+                class="journal-path-card path-yellow"
+            >
+
+                <span class="path-number">
+                    02
+                </span>
+
+                <div>
+                    <p>WHAT I CREATE</p>
+                    <h3>Projects</h3>
+                </div>
+
+                <strong>
+                    EXPLORE →
+                </strong>
+
+            </a>
+
+            <a
+                href="reflections.html"
+                class="journal-path-card path-white"
+            >
+
+                <span class="path-number">
+                    03
+                </span>
+
+                <div>
+                    <p>HOW I GROW</p>
+                    <h3>Reflections</h3>
+                </div>
+
+                <strong>
+                    EXPLORE →
+                </strong>
+
+            </a>
+
         </div>
 
     </section>
@@ -142,8 +283,18 @@
 <footer>
 
     <div class="footer-left">
-        <a href="index.html" class="footer-logo">XOXO.</a>
-        <p>My personal learning diary.</p>
+
+        <a
+            href="index.html"
+            class="footer-logo"
+        >
+            XOXO.
+        </a>
+
+        <p>
+            Learning, creating, and growing one entry at a time.
+        </p>
+
     </div>
 
     <div class="footer-center">

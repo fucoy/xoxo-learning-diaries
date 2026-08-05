@@ -1,54 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <meta
         name="description"
-        content="All entries from XOXO Learning Diaries"
+        content="Browse the lessons, projects, experiences, and reflections in XOXO Learning Diaries."
     >
-    <title>Blog | XOXO Learning Diaries</title>
+
+    <meta name="theme-color" content="#f9fcff">
+
+    <link
+        rel="icon"
+        href="favicon.svg"
+        type="image/svg+xml"
+    >
+
     <link rel="stylesheet" href="style.css">
+
+    <title>Blog | XOXO Learning Diaries</title>
 </head>
 
-<body>
+<body data-page="blog">
 
 <header class="navbar">
-    <a href="index.html" class="logo">XOXO.</a>
+
+    <a
+        href="index.html"
+        class="logo"
+        aria-label="XOXO Learning Diaries home"
+    >
+        XOXO.
+    </a>
 
     <nav aria-label="Main navigation">
         <a href="index.html">HOME</a>
         <a href="blog.html" class="active">BLOG</a>
         <a href="profile.html">PROFILE</a>
     </nav>
+
 </header>
 
 <main>
 
-    <section class="blog-section">
+    <section class="blog-section blog-library">
 
         <div class="section-top">
 
             <div>
-                <p class="section-label">MY JOURNAL</p>
 
-                <h2>
+                <p class="section-label">
+                    MY JOURNAL
+                </p>
+
+                <h1 class="page-heading">
                     Little pieces of
                     <span>my journey.</span>
-                </h2>
+                </h1>
+
             </div>
 
             <p class="section-note">
-                Original lessons, projects, experiences,<br>
-                and reflections from my academic journey.
+                Browse my published lessons, projects,
+                activities, experiences, and reflections.
             </p>
 
         </div>
 
+        <div class="blog-toolbar">
+
+            <label
+                class="search-box"
+                for="postSearch"
+            >
+
+                <span>SEARCH ENTRIES</span>
+
+                <input
+                    type="search"
+                    id="postSearch"
+                    placeholder="Search entries"
+                    autocomplete="off"
+                >
+
+            </label>
+
+            <div
+                class="filter-list"
+                aria-label="Filter posts by category"
+            >
+
+                <button
+                    type="button"
+                    class="filter-button active"
+                    data-filter="All"
+                >
+                    ALL
+                </button>
+
+                <button
+                    type="button"
+                    class="filter-button"
+                    data-filter="Lesson"
+                >
+                    LESSONS
+                </button>
+
+                <button
+                    type="button"
+                    class="filter-button"
+                    data-filter="Activity"
+                >
+                    ACTIVITIES
+                </button>
+
+                <button
+                    type="button"
+                    class="filter-button"
+                    data-filter="Project"
+                >
+                    PROJECTS
+                </button>
+
+                <button
+                    type="button"
+                    class="filter-button"
+                    data-filter="Reflection"
+                >
+                    REFLECTIONS
+                </button>
+
+                <button
+                    type="button"
+                    class="filter-button"
+                    data-filter="Experience"
+                >
+                    EXPERIENCES
+                </button>
+
+            </div>
+
+        </div>
+
+        <p
+            id="blogResultsSummary"
+            class="blog-results-summary"
+            aria-live="polite"
+        ></p>
+
         <div class="blog-grid" id="blogGrid">
+
             <p class="loading-state">
                 Loading diary entries...
             </p>
+
         </div>
 
     </section>
@@ -58,8 +169,18 @@
 <footer>
 
     <div class="footer-left">
-        <a href="index.html" class="footer-logo">XOXO.</a>
-        <p>My personal learning diary.</p>
+
+        <a
+            href="index.html"
+            class="footer-logo"
+        >
+            XOXO.
+        </a>
+
+        <p>
+            Learning, creating, and growing one entry at a time.
+        </p>
+
     </div>
 
     <div class="footer-center">
