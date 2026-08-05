@@ -1435,3 +1435,77 @@ select:focus-visible {
 .blog-library::after {
     display: none;
 }
+html {
+    scroll-padding-top: 90px;
+}
+
+.navbar {
+    position: sticky !important;
+    top: 0;
+    z-index: 9999;
+    width: 100%;
+    background: rgba(249, 252, 255, 0.96);
+    border-bottom: 1px solid var(--blue-dusk);
+    box-shadow: 0 4px 18px rgba(16, 34, 63, 0.06);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+@media (max-width: 700px) {
+    html {
+        scroll-padding-top: 76px;
+    }
+
+    .navbar {
+        position: sticky !important;
+        top: 0;
+        min-height: 76px;
+        padding: 14px 6%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: row;
+        gap: 12px;
+    }
+
+    .logo {
+        flex-shrink: 0;
+        font-size: 1.55rem;
+    }
+
+    .navbar nav {
+        width: auto;
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        flex-wrap: nowrap;
+        gap: 14px;
+    }
+
+    .navbar nav a {
+        white-space: nowrap;
+        font-size: 0.58rem;
+        letter-spacing: 0.8px;
+    }
+}
+
+@media (max-width: 400px) {
+    .navbar {
+        padding-left: 4%;
+        padding-right: 4%;
+    }
+
+    .logo {
+        font-size: 1.35rem;
+    }
+
+    .navbar nav {
+        gap: 9px;
+    }
+
+    .navbar nav a {
+        font-size: 0.54rem;
+        letter-spacing: 0.4px;
+    }
+}
