@@ -366,3 +366,110 @@ filterButtons.forEach((button) => {
 });
 
 loadPublishedPosts();
+(() => {
+    const revealSelector = [
+    ".section-top",
+    ".entry-chooser",
+    ".blog-card",
+    ".journal-paths-heading",
+    ".journal-path-card",
+    ".profile-photo",
+    ".profile-copy",
+    ".profile-details",
+    ".detail-card",
+    ".post-shell",
+    ".loading-state",
+    ".empty-state"
+].join(", ");
+
+    const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    const revealObserver =
+        "IntersectionObserver" in window && !prefersReducedMotion
+            ? new IntersectionObserver(
+                  (entries, observer) => {
+                      entries.forEach((entry) => {
+                          if (!entry.isIntersecting) {
+                              return;
+                          }
+
+                          entry.target.classList.add("is-visible");
+                          observer.unobserve(entry.target);
+                      });
+                  },
+                  {
+                      threshold: 0.12,
+                      rootMargin: "0px 0px -50px 0px"
+                  }
+              )
+            : null;
+
+    function registerRevealItems(root = document) {
+        const elements = [];
+
+        if (
+            root instanceof Element &&
+            root.matches(revealSelector)
+        ) {
+            elements.push(root);
+        }
+
+        if (root.querySelectorAll) {
+            elements.push(
+                ...root.querySelectorAll(revealSelector)
+            );
+        }
+
+        elements.forEach((element, index) => {
+            if (element.dataset.revealReady === "true") {
+                return;
+            }
+
+            element.dataset.revealReady = "true";
+            element.classList.add("reveal-item");
+
+            const delay = Math.min(index % 6, 5) * 90;
+
+            element.style.setProperty(
+                "--reveal-delay",
+                `${delay}ms`
+            );
+
+            if (revealObserver) {
+                revealObserver.observe(element);
+            } else {
+                element.classList.add("is-visible");
+            }
+        });
+    }
+
+    function startRevealAnimation() {
+        registerRevealItems(document);
+
+        const pageObserver = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                mutation.addedNodes.forEach((node) => {
+                    if (node instanceof Element) {
+                        registerRevealItems(node);
+                    }
+                });
+            });
+        });
+
+        pageObserver.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener(
+            "DOMContentLoaded",
+            startRevealAnimation
+        );
+    } else {
+        startRevealAnimation();
+    }
+})();
