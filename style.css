@@ -1,6 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Playfair+Display:wght@500;600;700;800&display=swap");
 
 :root {
+    color-scheme: only light;
+
     --milk-white: #f9fcff;
     --manila: #fff789;
     --crystal-blue: #5f9ef4;
@@ -9,6 +11,13 @@
     --white: #ffffff;
     --gray-blue: #61708a;
     --error: #b93345;
+}
+
+html,
+body {
+    color-scheme: only light;
+    background-color: var(--milk-white);
+    color: var(--dark-blue);
 }
 
 * {
