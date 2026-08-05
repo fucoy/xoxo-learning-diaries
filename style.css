@@ -1721,3 +1721,29 @@ html {
         transition: none;
     }
 }
+@media (max-width: 700px) {
+    .hero {
+        padding-top: 32px;
+        padding-bottom: 65px;
+    }
+
+    .blog-section,
+    .blog-library {
+        padding-top: 35px;
+        padding-bottom: 70px;
+    }
+
+    .section-top {
+        margin-bottom: 28px;
+        gap: 18px;
+    }
+
+    .hero-label,
+    .section-label {
+        margin-bottom: 10px;
+    }
+
+    .entry-chooser {
+        margin-top: 5px;
+    }
+}
