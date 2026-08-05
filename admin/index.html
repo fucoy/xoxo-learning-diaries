@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Administrator login for XOXO Learning Diaries">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Admin Login | XOXO Learning Diaries</title>
+    <link rel="stylesheet" href="/admin/admin.css">
+</head>
+
+<body>
+
+<main class="login-page">
+
+    <section class="login-brand">
+
+        <a href="/" class="admin-logo">
+            XOXO.
+        </a>
+
+        <p class="login-label">
+            ADMINISTRATOR ACCESS
+        </p>
+
+        <h1>
+            Welcome<br>
+            <span>back.</span>
+        </h1>
+
+        <p class="login-description">
+            Sign in to create, edit, publish, and manage your personal
+            learning diary entries.
+        </p>
+
+    </section>
+
+    <section class="login-card">
+
+        <div class="login-card-header">
+            <span>ADMIN PASS</span>
+            <span>✦ ✦ ✦</span>
+        </div>
+
+        <h2>Sign in</h2>
+
+        <form id="loginForm">
+
+            <div class="form-group">
+                <label for="email">EMAIL ADDRESS</label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    autocomplete="email"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="password">PASSWORD</label>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    autocomplete="current-password"
+                    required
+                >
+            </div>
+
+            <button type="submit" id="loginButton">
+                LOGIN TO DASHBOARD
+                <span>→</span>
+            </button>
+
+            <p
+                id="loginMessage"
+                class="login-message"
+                aria-live="polite"
+            ></p>
+
+        </form>
+
+        <a href="/" class="back-home">
+            ← BACK TO HOME
+        </a>
+
+    </section>
+
+</main>
+
+<script type="module" src="/admin/login.js"></script>
+
+</body>
+</html>

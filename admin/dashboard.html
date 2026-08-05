@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="XOXO Learning Diaries administrator dashboard">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Admin Dashboard | XOXO Learning Diaries</title>
+    <link rel="stylesheet" href="/admin/dashboard.css">
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <aside class="sidebar">
+
+        <div>
+            <a href="/" class="dashboard-logo">XOXO.</a>
+            <p class="dashboard-label">ADMIN PANEL</p>
+        </div>
+
+        <nav class="sidebar-navigation">
+            <a href="#overview" class="active">
+                <span>01</span>
+                OVERVIEW
+            </a>
+
+            <a href="#editor">
+                <span>02</span>
+                CREATE POST
+            </a>
+
+            <a href="#posts">
+                <span>03</span>
+                MANAGE POSTS
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <a href="/" class="view-site-link" target="_blank">
+                VIEW WEBSITE ↗
+            </a>
+
+            <button type="button" id="logoutButton">
+                LOGOUT
+            </button>
+        </div>
+
+    </aside>
+
+    <main class="dashboard-main">
+
+        <header class="dashboard-header">
+
+            <div>
+                <p class="header-label">
+                    XOXO LEARNING DIARIES
+                </p>
+
+                <h1>Welcome back, Angel.</h1>
+
+                <p class="admin-email" id="adminEmail"></p>
+            </div>
+
+            <div class="admin-badge">
+                <span class="admin-dot"></span>
+                ADMINISTRATOR
+            </div>
+
+        </header>
+
+        <section class="overview-section" id="overview">
+
+            <div class="section-heading">
+
+                <div>
+                    <p class="section-number">01</p>
+                    <h2>Dashboard overview</h2>
+                </div>
+
+                <p>
+                    Manage your journal entries and publish new stories.
+                </p>
+
+            </div>
+
+            <div class="statistics-grid">
+
+                <article class="stat-card blue-card">
+                    <p>TOTAL POSTS</p>
+                    <strong id="totalPosts">0</strong>
+                    <span>All journal entries</span>
+                </article>
+
+                <article class="stat-card yellow-card">
+                    <p>PUBLISHED</p>
+                    <strong id="publishedPosts">0</strong>
+                    <span>Visible to visitors</span>
+                </article>
+
+                <article class="stat-card white-card">
+                    <p>DRAFTS</p>
+                    <strong id="draftPosts">0</strong>
+                    <span>Not yet published</span>
+                </article>
+
+            </div>
+
+        </section>
+
+        <section class="editor-section" id="editor">
+
+            <div class="section-heading">
+
+                <div>
+                    <p class="section-number">02</p>
+                    <h2 id="editorTitle">
+                        Create a diary entry
+                    </h2>
+                </div>
+
+                <p>
+                    Write and publish your own original content.
+                </p>
+
+            </div>
+
+            <form id="postForm" class="post-form">
+
+                <input type="hidden" id="postId">
+
+                <div class="form-grid">
+
+                    <div class="form-field full-width">
+                        <label for="postTitle">
+                            POST TITLE
+                        </label>
+
+                        <input
+                            type="text"
+                            id="postTitle"
+                            placeholder="Enter your diary entry title"
+                            maxlength="160"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-field">
+                        <label for="postCategory">
+                            CATEGORY
+                        </label>
+
+                        <select id="postCategory" required>
+                            <option value="">
+                                Choose a category
+                            </option>
+
+                            <option value="Lesson">
+                                Lesson
+                            </option>
+
+                            <option value="Activity">
+                                Activity
+                            </option>
+
+                            <option value="Project">
+                                Project
+                            </option>
+
+                            <option value="Reflection">
+                                Reflection
+                            </option>
+
+                            <option value="Experience">
+                                Experience
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="postStatus">
+                            STATUS
+                        </label>
+
+                        <select id="postStatus" required>
+                            <option value="draft">
+                                Draft
+                            </option>
+
+                            <option value="published">
+                                Published
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-field full-width">
+                        <label for="coverImage">
+                            COVER IMAGE URL
+                        </label>
+
+                        <input
+                            type="url"
+                            id="coverImage"
+                            placeholder="https://example.com/image.jpg"
+                        >
+                    </div>
+
+                    <div class="form-field full-width">
+                        <label for="postExcerpt">
+                            SHORT DESCRIPTION
+                        </label>
+
+                        <textarea
+                            id="postExcerpt"
+                            rows="4"
+                            placeholder="Write a short preview of your diary entry"
+                            required
+                        ></textarea>
+                    </div>
+
+                    <div class="form-field full-width">
+                        <label for="postContent">
+                            FULL CONTENT
+                        </label>
+
+                        <textarea
+                            id="postContent"
+                            rows="14"
+                            placeholder="Write your full diary entry here"
+                            required
+                        ></textarea>
+                    </div>
+
+                </div>
+
+                <div class="form-actions">
+
+                    <button
+                        type="button"
+                        id="clearButton"
+                        class="secondary-button"
+                    >
+                        CLEAR FORM
+                    </button>
+
+                    <button
+                        type="submit"
+                        id="savePostButton"
+                        class="primary-button"
+                    >
+                        SAVE POST
+                        <span>→</span>
+                    </button>
+
+                </div>
+
+                <p
+                    id="postMessage"
+                    class="post-message"
+                    aria-live="polite"
+                ></p>
+
+            </form>
+
+        </section>
+
+        <section class="posts-section" id="posts">
+
+            <div class="section-heading">
+
+                <div>
+                    <p class="section-number">03</p>
+                    <h2>Manage your posts</h2>
+                </div>
+
+                <div class="search-container">
+                    <label for="postSearch">
+                        SEARCH
+                    </label>
+
+                    <input
+                        type="search"
+                        id="postSearch"
+                        placeholder="Search posts"
+                    >
+                </div>
+
+            </div>
+
+            <div class="posts-table-container">
+
+                <table class="posts-table">
+
+                    <thead>
+                        <tr>
+                            <th>TITLE</th>
+                            <th>CATEGORY</th>
+                            <th>STATUS</th>
+                            <th>DATE</th>
+                            <th>ACTIONS</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="adminPostList">
+                        <tr class="empty-row">
+                            <td colspan="5">
+                                Loading posts...
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script type="module" src="/admin/dashboard.js"></script>
+
+</body>
+</html>
