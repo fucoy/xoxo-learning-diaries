@@ -14,15 +14,20 @@
         content="Browse the lessons, projects, experiences, and reflections in XOXO Learning Diaries."
     >
 
+    <meta name="color-scheme" content="only light">
+    <meta name="supported-color-schemes" content="light">
     <meta name="theme-color" content="#f9fcff">
 
     <link
         rel="icon"
-        href="favicon.svg"
+        href="./favicon.svg"
         type="image/svg+xml"
     >
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="./style.css?v=8"
+    >
 
     <title>Blog | XOXO Learning Diaries</title>
 </head>
@@ -32,7 +37,7 @@
 <header class="navbar">
 
     <a
-        href="index.html"
+        href="./index.html"
         class="logo"
         aria-label="XOXO Learning Diaries home"
     >
@@ -40,9 +45,9 @@
     </a>
 
     <nav aria-label="Main navigation">
-        <a href="index.html">HOME</a>
-        <a href="blog.html" class="active">BLOG</a>
-        <a href="profile.html">PROFILE</a>
+        <a href="./index.html">HOME</a>
+        <a href="./blog.html" class="active">BLOG</a>
+        <a href="./profile.html">PROFILE</a>
     </nav>
 
 </header>
@@ -73,27 +78,33 @@
 
         </div>
 
-        <div class="blog-toolbar">
+        <section
+            class="entry-chooser"
+            aria-labelledby="entryChooserTitle"
+        >
 
-            <label
-                class="search-box"
-                for="postSearch"
-            >
+            <div class="entry-chooser-copy">
 
-                <span>SEARCH ENTRIES</span>
+                <p class="chooser-label">
+                    BROWSE BY CATEGORY
+                </p>
 
-                <input
-                    type="search"
-                    id="postSearch"
-                    placeholder="Search entries"
-                    autocomplete="off"
-                >
+                <h2 id="entryChooserTitle">
+                    Choose your
+                    <span>entries.</span>
+                </h2>
 
-            </label>
+                <p>
+                    Select a category to explore the lessons,
+                    activities, projects, experiences, and
+                    reflections inside my learning journal.
+                </p>
+
+            </div>
 
             <div
                 class="filter-list"
-                aria-label="Filter posts by category"
+                aria-label="Choose a journal category"
             >
 
                 <button
@@ -101,7 +112,8 @@
                     class="filter-button active"
                     data-filter="All"
                 >
-                    ALL
+                    <span>01</span>
+                    ALL ENTRIES
                 </button>
 
                 <button
@@ -109,6 +121,7 @@
                     class="filter-button"
                     data-filter="Lesson"
                 >
+                    <span>02</span>
                     LESSONS
                 </button>
 
@@ -117,6 +130,7 @@
                     class="filter-button"
                     data-filter="Activity"
                 >
+                    <span>03</span>
                     ACTIVITIES
                 </button>
 
@@ -125,6 +139,7 @@
                     class="filter-button"
                     data-filter="Project"
                 >
+                    <span>04</span>
                     PROJECTS
                 </button>
 
@@ -133,6 +148,7 @@
                     class="filter-button"
                     data-filter="Reflection"
                 >
+                    <span>05</span>
                     REFLECTIONS
                 </button>
 
@@ -141,12 +157,13 @@
                     class="filter-button"
                     data-filter="Experience"
                 >
+                    <span>06</span>
                     EXPERIENCES
                 </button>
 
             </div>
 
-        </div>
+        </section>
 
         <p
             id="blogResultsSummary"
@@ -154,7 +171,10 @@
             aria-live="polite"
         ></p>
 
-        <div class="blog-grid" id="blogGrid">
+        <div
+            class="blog-grid"
+            id="blogGrid"
+        >
 
             <p class="loading-state">
                 Loading diary entries...
@@ -171,7 +191,7 @@
     <div class="footer-left">
 
         <a
-            href="index.html"
+            href="./index.html"
             class="footer-logo"
         >
             XOXO.
@@ -188,14 +208,17 @@
     </div>
 
     <div class="footer-right">
-        <a href="index.html">HOME</a>
-        <a href="blog.html">BLOG</a>
-        <a href="profile.html">PROFILE</a>
+        <a href="./index.html">HOME</a>
+        <a href="./blog.html">BLOG</a>
+        <a href="./profile.html">PROFILE</a>
     </div>
 
 </footer>
 
-<script type="module" src="script.js"></script>
+<script
+    type="module"
+    src="./script.js?v=8"
+></script>
 
 </body>
 </html>
