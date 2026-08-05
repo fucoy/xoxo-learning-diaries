@@ -1671,3 +1671,31 @@ html {
         min-height: 57px;
     }
 }
+.blog-library .entry-chooser,
+.blog-library .blog-results-summary,
+.blog-library .blog-grid {
+    width: 100%;
+    max-width: 100%;
+}
+
+.blog-library .blog-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    justify-content: stretch;
+}
+
+.blog-library .blog-card {
+    width: 100%;
+    max-width: none;
+}
+
+@media (max-width: 1000px) {
+    .blog-library .blog-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 700px) {
+    .blog-library .blog-grid {
+        grid-template-columns: 1fr;
+    }
+}
