@@ -26,7 +26,7 @@
 
     <link
         rel="stylesheet"
-        href="./style.css?v=4"
+        href="./style.css?v=10"
     >
 
     <title>XOXO Learning Diaries | Angel Mig G. Fucoy</title>
@@ -158,137 +158,169 @@
     </section>
 
     <section
-        class="blog-section home-latest"
-        id="latest"
-    >
+    class="blog-section home-latest"
+    id="latest"
+>
 
-        <div class="section-top">
+    <div class="section-top">
 
-            <div>
+        <div>
 
-                <p class="section-label">
-                    LATEST ENTRIES
+            <p class="section-label">
+                LATEST ENTRIES
+            </p>
+
+            <h2>
+                Recently added to
+                <span>my diary.</span>
+            </h2>
+
+        </div>
+
+        <p class="section-note">
+            My newest lessons, projects, experiences,
+            and reflections.
+        </p>
+
+    </div>
+
+    <div class="home-carousel-layout">
+
+        <div class="home-carousel-main">
+
+            <div
+                class="home-carousel-track"
+                id="homeCarouselTrack"
+            >
+                <p class="loading-state">
+                    Loading diary entries...
                 </p>
-
-                <h2>
-                    Recently added to
-                    <span>my diary.</span>
-                </h2>
-
             </div>
 
-            <p class="section-note">
-                My newest lessons, projects, experiences,
-                and reflections.
-            </p>
+            <button
+                class="home-carousel-arrow home-carousel-prev"
+                id="homeCarouselPrev"
+                type="button"
+                aria-label="Previous entry"
+            >
+                ‹
+            </button>
+
+            <button
+                class="home-carousel-arrow home-carousel-next"
+                id="homeCarouselNext"
+                type="button"
+                aria-label="Next entry"
+            >
+                ›
+            </button>
+
+            <div
+                class="home-carousel-dots"
+                id="homeCarouselDots"
+                aria-label="Carousel navigation"
+            ></div>
 
         </div>
 
-        <div
-            class="blog-grid"
-            id="blogGrid"
-        >
+        <aside class="home-recent-panel">
 
-            <p class="loading-state">
-                Loading diary entries...
+            <p class="home-recent-label">
+                RECENT ARTICLES
             </p>
 
-        </div>
-
-        <div class="latest-actions">
+            <div
+                class="home-recent-list"
+                id="homeRecentList"
+            ></div>
 
             <a
                 href="./blog.html"
-                class="secondary-link-button"
+                class="home-recent-view-all"
             >
                 VIEW ALL ENTRIES
                 <span aria-hidden="true">→</span>
             </a>
 
-        </div>
+        </aside>
 
-    </section>
+    </div>
 
-    <section class="journal-paths">
+    <div
+        class="blog-grid home-carousel-source"
+        id="blogGrid"
+        aria-hidden="true"
+    >
+        <p class="loading-state">
+            Loading diary entries...
+        </p>
+    </div>
 
-        <div class="journal-paths-heading">
+</section>
+</section>
 
-            <p class="section-label">
-                EXPLORE MY JOURNEY
-            </p>
+<section class="journal-paths">
 
-            <h2>
-                Three parts of
-                <span>my story.</span>
-            </h2>
+    <div class="journal-paths-heading">
 
-        </div>
+        <p class="section-label">
+            EXPLORE MY JOURNEY
+        </p>
 
-        <div class="journal-paths-grid">
+        <h2>
+            Three parts of
+            <span>my story.</span>
+        </h2>
 
-            <a
-                href="./lessons.html"
-                class="journal-path-card path-blue"
-            >
+    </div>
 
-                <span class="path-number">
-                    01
-                </span>
+    <div class="journal-paths-grid">
 
-                <div>
-                    <p>WHAT I LEARN</p>
-                    <h3>Lessons</h3>
-                </div>
+        <a
+            href="./lessons.html"
+            class="journal-path-card path-blue"
+        >
+            <span class="path-number">01</span>
 
-                <strong>
-                    EXPLORE →
-                </strong>
+            <div>
+                <p>WHAT I LEARN</p>
+                <h3>Lessons</h3>
+            </div>
 
-            </a>
+            <strong>EXPLORE →</strong>
+        </a>
 
-            <a
-                href="./projects.html"
-                class="journal-path-card path-yellow"
-            >
+        <a
+            href="./projects.html"
+            class="journal-path-card path-yellow"
+        >
+            <span class="path-number">02</span>
 
-                <span class="path-number">
-                    02
-                </span>
+            <div>
+                <p>WHAT I CREATE</p>
+                <h3>Projects</h3>
+            </div>
 
-                <div>
-                    <p>WHAT I CREATE</p>
-                    <h3>Projects</h3>
-                </div>
+            <strong>EXPLORE →</strong>
+        </a>
 
-                <strong>
-                    EXPLORE →
-                </strong>
+        <a
+            href="./reflections.html"
+            class="journal-path-card path-white"
+        >
+            <span class="path-number">03</span>
 
-            </a>
+            <div>
+                <p>HOW I GROW</p>
+                <h3>Reflections</h3>
+            </div>
 
-            <a
-                href="./reflections.html"
-                class="journal-path-card path-white"
-            >
+            <strong>EXPLORE →</strong>
+        </a>
 
-                <span class="path-number">
-                    03
-                </span>
+    </div>
 
-                <div>
-                    <p>HOW I GROW</p>
-                    <h3>Reflections</h3>
-                </div>
-
-                <strong>
-                    EXPLORE →
-                </strong>
-
-            </a>
-
-        </div>
-
-    </section>
+</section>
 
 </main>
 
@@ -323,7 +355,7 @@
 
 <script
     type="module"
-    src="./script.js?v=4"
+    src="./script.js?v=9"
 ></script>
 
 </body>

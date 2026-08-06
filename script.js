@@ -473,3 +473,230 @@ loadPublishedPosts();
         startRevealAnimation();
     }
 })();
+(() => {
+    const source = document.getElementById("blogGrid");
+    const track = document.getElementById("homeCarouselTrack");
+    const recentList = document.getElementById("homeRecentList");
+    const dotsContainer = document.getElementById("homeCarouselDots");
+    const previousButton = document.getElementById(
+        "homeCarouselPrev"
+    );
+    const nextButton = document.getElementById(
+        "homeCarouselNext"
+    );
+
+    if (
+        !source ||
+        !track ||
+        !recentList ||
+        !dotsContainer ||
+        !previousButton ||
+        !nextButton
+    ) {
+        return;
+    }
+
+    let slides = [];
+    let recentButtons = [];
+    let dotButtons = [];
+    let currentIndex = 0;
+    let buildTimer;
+
+    function showSlide(index) {
+        if (!slides.length) {
+            return;
+        }
+
+        currentIndex =
+            (index + slides.length) % slides.length;
+
+        slides.forEach((slide, slideIndex) => {
+            const active = slideIndex === currentIndex;
+
+            slide.classList.toggle("is-active", active);
+            slide.setAttribute(
+                "aria-hidden",
+                String(!active)
+            );
+        });
+
+        recentButtons.forEach((button, buttonIndex) => {
+            button.classList.toggle(
+                "is-active",
+                buttonIndex === currentIndex
+            );
+        });
+
+        dotButtons.forEach((button, buttonIndex) => {
+            const active = buttonIndex === currentIndex;
+
+            button.classList.toggle("is-active", active);
+            button.setAttribute(
+                "aria-current",
+                active ? "true" : "false"
+            );
+        });
+    }
+
+    function createRecentItem(card, index) {
+        const button = document.createElement("button");
+        const category = document.createElement("span");
+        const title = document.createElement("strong");
+        const date = document.createElement("small");
+
+        const categoryText =
+            card.querySelector(".type")?.textContent.trim() ||
+            "Diary Entry";
+
+        const titleText =
+            card.querySelector("h3")?.textContent.trim() ||
+            `Entry ${index + 1}`;
+
+        const dateText =
+            card
+                .querySelector(".post-date")
+                ?.textContent.trim() || "";
+
+        button.type = "button";
+        button.className = "home-recent-item";
+        button.setAttribute(
+            "aria-label",
+            `Show ${titleText}`
+        );
+
+        category.textContent = categoryText;
+        title.textContent = titleText;
+        date.textContent = dateText;
+
+        button.append(category, title, date);
+
+        button.addEventListener("click", () => {
+            showSlide(index);
+        });
+
+        return button;
+    }
+
+    function createDot(index, title) {
+        const button = document.createElement("button");
+
+        button.type = "button";
+        button.className = "home-carousel-dot";
+        button.setAttribute(
+            "aria-label",
+            `Show ${title}`
+        );
+
+        button.addEventListener("click", () => {
+            showSlide(index);
+        });
+
+        return button;
+    }
+
+    function buildCarousel() {
+        const cards = Array.from(
+            source.querySelectorAll(".blog-card")
+        ).slice(0, 6);
+
+        if (!cards.length) {
+            const message = source.querySelector(
+                ".empty-state, .error-state"
+            );
+
+            if (message) {
+                track.innerHTML = "";
+                track.appendChild(message.cloneNode(true));
+            }
+
+            return;
+        }
+
+        track.innerHTML = "";
+        recentList.innerHTML = "";
+        dotsContainer.innerHTML = "";
+
+        slides = [];
+        recentButtons = [];
+        dotButtons = [];
+
+        cards.forEach((card, index) => {
+            const slide = document.createElement("div");
+            const cardCopy = card.cloneNode(true);
+
+            cardCopy.classList.remove(
+                "reveal-item",
+                "is-visible"
+            );
+
+            cardCopy.removeAttribute("data-reveal-ready");
+            cardCopy.style.removeProperty(
+                "--reveal-delay"
+            );
+
+            slide.className = "home-carousel-slide";
+            slide.appendChild(cardCopy);
+            track.appendChild(slide);
+
+            const title =
+                card.querySelector("h3")?.textContent.trim() ||
+                `Entry ${index + 1}`;
+
+            const recentItem = createRecentItem(
+                card,
+                index
+            );
+
+            const dot = createDot(index, title);
+
+            recentList.appendChild(recentItem);
+            dotsContainer.appendChild(dot);
+
+            slides.push(slide);
+            recentButtons.push(recentItem);
+            dotButtons.push(dot);
+        });
+
+        showSlide(0);
+    }
+
+    function scheduleBuild() {
+        clearTimeout(buildTimer);
+
+        buildTimer = setTimeout(() => {
+            buildCarousel();
+        }, 80);
+    }
+
+    previousButton.addEventListener("click", () => {
+        showSlide(currentIndex - 1);
+    });
+
+    nextButton.addEventListener("click", () => {
+        showSlide(currentIndex + 1);
+    });
+
+    const observer = new MutationObserver(() => {
+        scheduleBuild();
+    });
+
+    observer.observe(source, {
+        childList: true,
+        subtree: true
+    });
+
+    scheduleBuild();
+})();
+(() => {
+    const nextButton = document.getElementById(
+        "homeCarouselNext"
+    );
+
+    if (!nextButton) {
+        return;
+    }
+
+    setInterval(() => {
+        nextButton.click();
+    }, 3000);
+})();
