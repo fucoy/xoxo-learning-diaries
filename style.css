@@ -1747,3 +1747,33 @@ html {
         margin-top: 5px;
     }
 }
+@media (max-width: 700px) {
+    .hero h1 {
+        font-size: clamp(3rem, 14vw, 4.4rem);
+        line-height: 0.9;
+    }
+
+    .page-heading {
+        font-size: clamp(2.7rem, 12vw, 3.8rem);
+    }
+
+    .entry-chooser-copy h2 {
+        font-size: clamp(2.2rem, 10vw, 3rem);
+    }
+
+    .entry-chooser {
+        padding: 24px 20px;
+        gap: 24px;
+    }
+
+    .entry-chooser-copy > p:last-child {
+        margin-top: 14px;
+        font-size: 0.74rem;
+        line-height: 1.7;
+    }
+
+    .entry-chooser .filter-button {
+        min-height: 52px;
+        padding: 11px 14px;
+    }
+}
