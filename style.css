@@ -2436,3 +2436,132 @@ html {
     visibility: visible !important;
     opacity: 1 !important;
 }
+:root {
+    color-scheme: only light;
+    --milk-white: #f9fcff;
+    --manila: #fff789;
+    --crystal-blue: #5f9ef4;
+    --blue-dusk: #b6d6ff;
+    --dark-blue: #10223f;
+    --white: #ffffff;
+    --gray-blue: #61708a;
+    --error: #b93345;
+}
+
+html,
+body {
+    color-scheme: only light !important;
+    background-color: #f9fcff !important;
+    color: #10223f !important;
+}
+
+.navbar {
+    background: rgba(249, 252, 255, 0.97) !important;
+    border-bottom-color: #b6d6ff !important;
+}
+
+.hero,
+.profile-hero {
+    background:
+        radial-gradient(
+            circle at 84% 20%,
+            rgba(255, 247, 137, 0.85),
+            transparent 28%
+        ),
+        linear-gradient(
+            135deg,
+            #f9fcff 0%,
+            #eef6ff 42%,
+            #b6d6ff 100%
+        ) !important;
+}
+
+.home-latest,
+.blog-library {
+    background:
+        radial-gradient(
+            circle at 50% 10%,
+            rgba(255, 247, 137, 0.38) 0%,
+            rgba(255, 247, 137, 0.18) 30%,
+            rgba(255, 247, 137, 0.06) 55%,
+            transparent 75%
+        ),
+        linear-gradient(
+            135deg,
+            #f9fcff 0%,
+            #fffef0 45%,
+            #fffde1 65%,
+            #f9fcff 100%
+        ) !important;
+}
+
+.entry-chooser {
+    background:
+        linear-gradient(
+            135deg,
+            #fff789 0%,
+            #fffde1 38%,
+            #f9fcff 100%
+        ) !important;
+    color: #10223f !important;
+}
+
+.journal-paths {
+    background: #b6d6ff !important;
+    color: #10223f !important;
+}
+
+.path-blue,
+.blog-card.blue-card {
+    background: #b6d6ff !important;
+}
+
+.path-yellow,
+.blog-card.yellow-card {
+    background: #fff789 !important;
+}
+
+.path-white,
+.blog-card.white-card {
+    background: #f9fcff !important;
+}
+
+.section-label,
+.logo,
+.section-top h2 span,
+.page-heading span,
+.journal-paths-heading h2 span {
+    color: #5f9ef4 !important;
+}
+
+.enter-button,
+.secondary-link-button,
+.back-link {
+    background: #5f9ef4 !important;
+    color: #ffffff !important;
+}
+
+.post-page {
+    background:
+        linear-gradient(
+            180deg,
+            #b6d6ff 0%,
+            #f9fcff 420px
+        ) !important;
+}
+
+.post-shell,
+.profile-story article {
+    background: #f9fcff !important;
+    color: #10223f !important;
+}
+
+footer {
+    background: #10223f !important;
+    border-top-color: #fff789 !important;
+    color: #f9fcff !important;
+}
+
+.footer-logo {
+    color: #fff789 !important;
+}
