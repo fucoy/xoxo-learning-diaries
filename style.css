@@ -2659,3 +2659,74 @@ footer {
         -webkit-line-clamp: 3 !important;
     }
 }
+.post-content {
+    white-space: normal !important;
+    overflow-wrap: break-word;
+}
+
+.post-content p {
+    margin: 0 0 22px;
+}
+
+.post-content h2 {
+    margin: 48px 0 20px;
+    color: var(--dark-blue);
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.12;
+    letter-spacing: -1px;
+}
+
+.post-content h3 {
+    margin: 38px 0 16px;
+    color: var(--crystal-blue);
+    font-family: "Playfair Display", serif;
+    font-size: clamp(1.45rem, 3vw, 2rem);
+    line-height: 1.2;
+}
+
+.post-content ul,
+.post-content ol {
+    margin: 18px 0 25px 30px;
+}
+
+.post-content li {
+    margin-bottom: 10px;
+}
+
+.post-content strong,
+.post-content b {
+    font-weight: 700;
+}
+
+.post-content em,
+.post-content i {
+    font-style: italic;
+}
+
+.post-content u {
+    text-decoration: underline;
+}
+
+.post-content font,
+.post-content span {
+    line-height: inherit;
+}
+
+@media (max-width: 700px) {
+    .post-content h2 {
+        margin-top: 38px;
+        font-size: clamp(1.8rem, 8vw, 2.5rem);
+    }
+
+    .post-content h3 {
+        margin-top: 30px;
+        font-size: clamp(1.35rem, 7vw, 1.8rem);
+    }
+
+    .post-content p,
+    .post-content li {
+        font-size: 0.95rem;
+        line-height: 1.85;
+    }
+}

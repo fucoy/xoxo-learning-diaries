@@ -1,12 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="XOXO Learning Diaries administrator dashboard">
-    <meta name="robots" content="noindex, nofollow">
-    <title>Admin Dashboard | XOXO Learning Diaries</title>
-    <link rel="stylesheet" href="/admin/dashboard.css">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="XOXO Learning Diaries Admin Dashboard"
+    >
+
+    <meta name="color-scheme" content="only light">
+    <meta name="supported-color-schemes" content="light">
+    <meta name="theme-color" content="#f9fcff">
+
+    <link
+        rel="icon"
+        href="../favicon.svg"
+        type="image/svg+xml"
+    >
+
+    <link
+        rel="stylesheet"
+        href="./dashboard.css?v=2"
+    >
+
+    <title>
+        Admin Dashboard | XOXO Learning Diaries
+    </title>
 </head>
 
 <body>
@@ -16,12 +41,24 @@
     <aside class="sidebar">
 
         <div>
-            <a href="/" class="dashboard-logo">XOXO.</a>
-            <p class="dashboard-label">ADMIN PANEL</p>
+            <a
+                href="/"
+                class="dashboard-logo"
+            >
+                XOXO.
+            </a>
+
+            <p class="dashboard-label">
+                ADMIN PANEL
+            </p>
         </div>
 
         <nav class="sidebar-navigation">
-            <a href="#overview" class="active">
+
+            <a
+                href="#overview"
+                class="active"
+            >
                 <span>01</span>
                 OVERVIEW
             </a>
@@ -35,16 +72,26 @@
                 <span>03</span>
                 MANAGE POSTS
             </a>
+
         </nav>
 
         <div class="sidebar-bottom">
-            <a href="/" class="view-site-link" target="_blank">
+
+            <a
+                href="/"
+                class="view-site-link"
+                target="_blank"
+            >
                 VIEW WEBSITE ↗
             </a>
 
-            <button type="button" id="logoutButton">
+            <button
+                type="button"
+                id="logoutButton"
+            >
                 LOGOUT
             </button>
+
         </div>
 
     </aside>
@@ -54,13 +101,20 @@
         <header class="dashboard-header">
 
             <div>
+
                 <p class="header-label">
                     XOXO LEARNING DIARIES
                 </p>
 
-                <h1>Welcome back, Angel.</h1>
+                <h1>
+                    Welcome back, Angel.
+                </h1>
 
-                <p class="admin-email" id="adminEmail"></p>
+                <p
+                    class="admin-email"
+                    id="adminEmail"
+                ></p>
+
             </div>
 
             <div class="admin-badge">
@@ -70,17 +124,26 @@
 
         </header>
 
-        <section class="overview-section" id="overview">
+        <section
+            class="overview-section"
+            id="overview"
+        >
 
             <div class="section-heading">
 
                 <div>
-                    <p class="section-number">01</p>
-                    <h2>Dashboard overview</h2>
+                    <p class="section-number">
+                        01
+                    </p>
+
+                    <h2>
+                        Dashboard overview
+                    </h2>
                 </div>
 
                 <p>
-                    Manage your journal entries and publish new stories.
+                    Manage your journal entries
+                    and publish new stories.
                 </p>
 
             </div>
@@ -109,30 +172,44 @@
 
         </section>
 
-        <section class="editor-section" id="editor">
+        <section
+            class="editor-section"
+            id="editor"
+        >
 
             <div class="section-heading">
 
                 <div>
-                    <p class="section-number">02</p>
+                    <p class="section-number">
+                        02
+                    </p>
+
                     <h2 id="editorTitle">
                         Create a diary entry
                     </h2>
                 </div>
 
                 <p>
-                    Write and publish your own original content.
+                    Write and publish your
+                    own original content.
                 </p>
 
             </div>
 
-            <form id="postForm" class="post-form">
+            <form
+                id="postForm"
+                class="post-form"
+            >
 
-                <input type="hidden" id="postId">
+                <input
+                    type="hidden"
+                    id="postId"
+                >
 
                 <div class="form-grid">
 
                     <div class="form-field full-width">
+
                         <label for="postTitle">
                             POST TITLE
                         </label>
@@ -144,14 +221,20 @@
                             maxlength="160"
                             required
                         >
+
                     </div>
 
                     <div class="form-field">
+
                         <label for="postCategory">
                             CATEGORY
                         </label>
 
-                        <select id="postCategory" required>
+                        <select
+                            id="postCategory"
+                            required
+                        >
+
                             <option value="">
                                 Choose a category
                             </option>
@@ -175,15 +258,22 @@
                             <option value="Experience">
                                 Experience
                             </option>
+
                         </select>
+
                     </div>
 
                     <div class="form-field">
+
                         <label for="postStatus">
                             STATUS
                         </label>
 
-                        <select id="postStatus" required>
+                        <select
+                            id="postStatus"
+                            required
+                        >
+
                             <option value="draft">
                                 Draft
                             </option>
@@ -191,10 +281,13 @@
                             <option value="published">
                                 Published
                             </option>
+
                         </select>
+
                     </div>
 
                     <div class="form-field full-width">
+
                         <label for="coverImage">
                             COVER IMAGE URL
                         </label>
@@ -204,9 +297,11 @@
                             id="coverImage"
                             placeholder="https://example.com/image.jpg"
                         >
+
                     </div>
 
                     <div class="form-field full-width">
+
                         <label for="postExcerpt">
                             SHORT DESCRIPTION
                         </label>
@@ -217,19 +312,203 @@
                             placeholder="Write a short preview of your diary entry"
                             required
                         ></textarea>
+
                     </div>
 
                     <div class="form-field full-width">
-                        <label for="postContent">
+
+                        <label>
                             FULL CONTENT
                         </label>
 
-                        <textarea
+                        <div
+                            class="editor-toolbar"
+                            id="editorToolbar"
+                        >
+
+                            <select
+                                id="textStyle"
+                                aria-label="Text style"
+                            >
+                                <option value="P">
+                                    Paragraph
+                                </option>
+
+                                <option value="H2">
+                                    Heading
+                                </option>
+
+                                <option value="H3">
+                                    Subheading
+                                </option>
+                            </select>
+
+                            <select
+                                id="fontFamily"
+                                aria-label="Font family"
+                            >
+                                <option value="">
+                                    Font
+                                </option>
+
+                                <option value="DM Mono">
+                                    DM Mono
+                                </option>
+
+                                <option value="Playfair Display">
+                                    Playfair Display
+                                </option>
+
+                                <option value="Arial">
+                                    Arial
+                                </option>
+
+                                <option value="Georgia">
+                                    Georgia
+                                </option>
+                            </select>
+
+                            <select
+                                id="fontSize"
+                                aria-label="Font size"
+                            >
+                                <option value="">
+                                    Size
+                                </option>
+
+                                <option value="2">
+                                    Small
+                                </option>
+
+                                <option value="3">
+                                    Normal
+                                </option>
+
+                                <option value="4">
+                                    Medium
+                                </option>
+
+                                <option value="5">
+                                    Large
+                                </option>
+
+                                <option value="6">
+                                    Extra Large
+                                </option>
+                            </select>
+
+                            <label
+                                class="color-control"
+                                title="Text color"
+                            >
+                                A
+
+                                <input
+                                    type="color"
+                                    id="fontColor"
+                                    value="#10223f"
+                                    aria-label="Text color"
+                                >
+                            </label>
+
+                            <span
+                                class="toolbar-divider"
+                                aria-hidden="true"
+                            ></span>
+
+                            <button
+                                type="button"
+                                data-command="bold"
+                                title="Bold"
+                            >
+                                <strong>B</strong>
+                            </button>
+
+                            <button
+                                type="button"
+                                data-command="italic"
+                                title="Italic"
+                            >
+                                <em>I</em>
+                            </button>
+
+                            <button
+                                type="button"
+                                data-command="underline"
+                                title="Underline"
+                            >
+                                <u>U</u>
+                            </button>
+
+                            <span
+                                class="toolbar-divider"
+                                aria-hidden="true"
+                            ></span>
+
+                            <button
+                                type="button"
+                                data-command="justifyLeft"
+                                title="Align left"
+                            >
+                                LEFT
+                            </button>
+
+                            <button
+                                type="button"
+                                data-command="justifyCenter"
+                                title="Align center"
+                            >
+                                CENTER
+                            </button>
+
+                            <button
+                                type="button"
+                                data-command="justifyRight"
+                                title="Align right"
+                            >
+                                RIGHT
+                            </button>
+
+                            <span
+                                class="toolbar-divider"
+                                aria-hidden="true"
+                            ></span>
+
+                            <button
+                                type="button"
+                                data-command="insertUnorderedList"
+                                title="Bullet list"
+                            >
+                                • LIST
+                            </button>
+
+                            <button
+                                type="button"
+                                data-command="insertOrderedList"
+                                title="Numbered list"
+                            >
+                                1. LIST
+                            </button>
+
+                            <button
+                                type="button"
+                                id="clearFormatting"
+                                title="Clear formatting"
+                            >
+                                CLEAR STYLE
+                            </button>
+
+                        </div>
+
+                        <div
                             id="postContent"
-                            rows="14"
-                            placeholder="Write your full diary entry here"
-                            required
-                        ></textarea>
+                            class="rich-text-editor"
+                            contenteditable="true"
+                            role="textbox"
+                            aria-multiline="true"
+                            data-placeholder="Write your full diary entry here"
+                        ></div>
+
                     </div>
 
                 </div>
@@ -265,16 +544,25 @@
 
         </section>
 
-        <section class="posts-section" id="posts">
+        <section
+            class="posts-section"
+            id="posts"
+        >
 
             <div class="section-heading">
 
                 <div>
-                    <p class="section-number">03</p>
-                    <h2>Manage your posts</h2>
+                    <p class="section-number">
+                        03
+                    </p>
+
+                    <h2>
+                        Manage your posts
+                    </h2>
                 </div>
 
                 <div class="search-container">
+
                     <label for="postSearch">
                         SEARCH
                     </label>
@@ -284,6 +572,7 @@
                         id="postSearch"
                         placeholder="Search posts"
                     >
+
                 </div>
 
             </div>
@@ -303,11 +592,13 @@
                     </thead>
 
                     <tbody id="adminPostList">
+
                         <tr class="empty-row">
                             <td colspan="5">
                                 Loading posts...
                             </td>
                         </tr>
+
                     </tbody>
 
                 </table>
@@ -320,7 +611,10 @@
 
 </div>
 
-<script type="module" src="/admin/dashboard.js"></script>
+<script
+    type="module"
+    src="./dashboard.js?v=2"
+></script>
 
 </body>
 </html>
