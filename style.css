@@ -2965,3 +2965,64 @@ footer {
         right: 6px !important;
     }
 }
+.tone-blue {
+    background: #dbe7f7;
+}
+
+.tone-yellow {
+    background: #f4efb3;
+}
+
+.tone-white {
+    background: #f3f5f8;
+}
+
+.tone-cream {
+    background: #f7f1e7;
+}
+
+.home-carousel-slide .blog-card.tone-blue,
+.home-carousel-slide .blog-card.tone-yellow,
+.home-carousel-slide .blog-card.tone-white,
+.home-carousel-slide .blog-card.tone-cream {
+    background: transparent;
+}
+
+.home-carousel-slide.tone-blue {
+    background: #a9c4e8;
+}
+
+.home-carousel-slide.tone-yellow {
+    background: #ece680;
+}
+
+.home-carousel-slide.tone-white {
+    background: #eef2f7;
+}
+
+.home-carousel-slide.tone-cream {
+    background: #f5eedf;
+}
+
+.home-carousel-slide.tone-blue .home-feature-card,
+.home-carousel-slide.tone-yellow .home-feature-card,
+.home-carousel-slide.tone-white .home-feature-card,
+.home-carousel-slide.tone-cream .home-feature-card {
+    background: rgba(255, 255, 255, 0.55);
+}
+
+.blog-card.tone-blue {
+    background: #dbe7f7;
+}
+
+.blog-card.tone-yellow {
+    background: #f4efb3;
+}
+
+.blog-card.tone-white {
+    background: #f3f5f8;
+}
+
+.blog-card.tone-cream {
+    background: #f7f1e7;
+}

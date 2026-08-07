@@ -4,11 +4,10 @@ const idCard = document.querySelector(".id-card");
 const blogGrid = document.getElementById("blogGrid");
 const postSearch = document.getElementById("postSearch");
 const filterButtons = document.querySelectorAll(".filter-button");
-const resultsSummary = document.getElementById(
-    "blogResultsSummary"
-);
+const resultsSummary = document.getElementById("blogResultsSummary");
 
 const pageType = document.body.dataset.page || "";
+
 const reducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)"
 ).matches;
@@ -63,8 +62,15 @@ function resetCardTilt() {
         return;
     }
 
-    idCard.style.setProperty("--rotate-y", "0deg");
-    idCard.style.setProperty("--rotate-x", "0deg");
+    idCard.style.setProperty(
+        "--rotate-y",
+        "0deg"
+    );
+
+    idCard.style.setProperty(
+        "--rotate-x",
+        "0deg"
+    );
 }
 
 function escapeHTML(value = "") {
@@ -91,11 +97,14 @@ function formatDate(dateValue) {
         return "";
     }
 
-    return new Intl.DateTimeFormat("en-PH", {
-        year: "numeric",
-        month: "long",
-        day: "numeric"
-    }).format(date);
+    return new Intl.DateTimeFormat(
+        "en-PH",
+        {
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+        }
+    ).format(date);
 }
 
 function getCardClass(index) {
@@ -105,7 +114,21 @@ function getCardClass(index) {
         "white-card"
     ];
 
-    return classes[index % classes.length];
+    return classes[
+        index % classes.length
+    ];
+}
+
+function getToneClass(index) {
+    const tones = [
+        "tone-blue",
+        "tone-yellow",
+        "tone-white"
+    ];
+
+    return tones[
+        index % tones.length
+    ];
 }
 
 function validImageUrl(value) {
@@ -123,11 +146,15 @@ function validImageUrl(value) {
         "/"
     ];
 
-    const valid = allowedPrefixes.some(
-        (prefix) => imageUrl.startsWith(prefix)
-    );
+    const valid =
+        allowedPrefixes.some(
+            (prefix) =>
+                imageUrl.startsWith(prefix)
+        );
 
-    return valid ? imageUrl : "";
+    return valid
+        ? imageUrl
+        : "";
 }
 
 function getEmptyMessage() {
@@ -138,11 +165,15 @@ function getEmptyMessage() {
         return `No ${activeCategory.toLowerCase()} entries matched your search.`;
     }
 
-    if (activeCategory !== "All") {
+    if (
+        activeCategory !== "All"
+    ) {
         return `No published ${activeCategory.toLowerCase()} entries yet.`;
     }
 
-    if (postSearch?.value.trim()) {
+    if (
+        postSearch?.value.trim()
+    ) {
         return "No entries matched your search.";
     }
 
@@ -154,13 +185,15 @@ function updateResultsSummary(count) {
         return;
     }
 
-    const entryWord = count === 1
-        ? "entry"
-        : "entries";
+    const entryWord =
+        count === 1
+            ? "entry"
+            : "entries";
 
-    const categoryText = activeCategory === "All"
-        ? "all categories"
-        : activeCategory.toLowerCase();
+    const categoryText =
+        activeCategory === "All"
+            ? "all categories"
+            : activeCategory.toLowerCase();
 
     resultsSummary.textContent =
         `Showing ${count} ${entryWord} from ${categoryText}.`;
@@ -171,7 +204,9 @@ function renderPosts(posts) {
         return;
     }
 
-    updateResultsSummary(posts.length);
+    updateResultsSummary(
+        posts.length
+    );
 
     if (!posts.length) {
         blogGrid.innerHTML = `
@@ -187,98 +222,113 @@ function renderPosts(posts) {
         return;
     }
 
-    blogGrid.innerHTML = posts
-        .map((post, index) => {
-            const imageUrl = validImageUrl(
-                post.cover_image
-            );
+    blogGrid.innerHTML =
+        posts
+            .map((post, index) => {
+                const imageUrl =
+                    validImageUrl(
+                        post.cover_image
+                    );
 
-            const imageMarkup = imageUrl
-                ? `
-                    <div class="blog-cover">
-                        <img
-                            src="${escapeHTML(imageUrl)}"
-                            alt="${escapeHTML(post.title)}"
-                            loading="lazy"
-                            decoding="async"
-                        >
-                    </div>
-                `
-                : "";
+                const imageMarkup =
+                    imageUrl
+                        ? `
+                            <div class="blog-cover">
+                                <img
+                                    src="${escapeHTML(imageUrl)}"
+                                    alt="${escapeHTML(post.title)}"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </div>
+                        `
+                        : "";
 
-            return `
-                <article class="blog-card ${getCardClass(index)}">
+                return `
+                    <article class="blog-card ${getCardClass(index)}">
 
-                    ${imageMarkup}
+                        ${imageMarkup}
 
-                    <div class="blog-card-body">
+                        <div class="blog-card-body">
 
-                        <div class="blog-card-top">
+                            <div class="blog-card-top">
 
-                            <p class="number">
-                                ${String(index + 1).padStart(2, "0")}
+                                <p class="number">
+                                    ${String(index + 1).padStart(2, "0")}
+                                </p>
+
+                                <p class="type">
+                                    ${escapeHTML(post.category)}
+                                </p>
+
+                            </div>
+
+                            <h3>
+                                ${escapeHTML(post.title)}
+                            </h3>
+
+                            <p class="post-date">
+                                ${formatDate(post.created_at)}
                             </p>
 
-                            <p class="type">
-                                ${escapeHTML(post.category)}
+                            <p class="card-description">
+                                ${escapeHTML(post.excerpt)}
                             </p>
+
+                            <a
+                                href="post.html?id=${encodeURIComponent(post.id)}"
+                                class="read-more"
+                                aria-label="Read ${escapeHTML(post.title)}"
+                            >
+                                READ ENTRY →
+                            </a>
 
                         </div>
 
-                        <h3>
-                            ${escapeHTML(post.title)}
-                        </h3>
-
-                        <p class="post-date">
-                            ${formatDate(post.created_at)}
-                        </p>
-
-                        <p class="card-description">
-                            ${escapeHTML(post.excerpt)}
-                        </p>
-
-                        <a
-                            href="post.html?id=${encodeURIComponent(post.id)}"
-                            class="read-more"
-                            aria-label="Read ${escapeHTML(post.title)}"
-                        >
-                            READ ENTRY →
-                        </a>
-
-                    </div>
-
-                </article>
-            `;
-        })
-        .join("");
+                    </article>
+                `;
+            })
+            .join("");
 }
 
 function filterPosts() {
     const searchText =
-        postSearch?.value.trim().toLowerCase() || "";
+        postSearch?.value
+            .trim()
+            .toLowerCase() || "";
 
-    const filteredPosts = allPosts.filter((post) => {
-        const matchesCategory =
-            activeCategory === "All" ||
-            post.category === activeCategory;
+    const filteredPosts =
+        allPosts.filter(
+            (post) => {
+                const matchesCategory =
+                    activeCategory === "All" ||
+                    post.category === activeCategory;
 
-        const searchableText = [
-            post.title,
-            post.category,
-            post.excerpt
-        ]
-            .filter(Boolean)
-            .join(" ")
-            .toLowerCase();
+                const searchableText = [
+                    post.title,
+                    post.category,
+                    post.excerpt
+                ]
+                    .filter(Boolean)
+                    .join(" ")
+                    .toLowerCase();
 
-        const matchesSearch =
-            !searchText ||
-            searchableText.includes(searchText);
+                const matchesSearch =
+                    !searchText ||
+                    searchableText.includes(
+                        searchText
+                    );
 
-        return matchesCategory && matchesSearch;
-    });
+                return (
+                    matchesCategory &&
+                    matchesSearch
+                );
+            }
+        );
 
-    renderPosts(filteredPosts);
+    renderPosts(
+        filteredPosts
+    );
 }
 
 async function loadPublishedPosts() {
@@ -291,22 +341,35 @@ async function loadPublishedPosts() {
         .select(
             "id, title, category, excerpt, cover_image, created_at"
         )
-        .eq("status", "published")
-        .order("created_at", {
-            ascending: false
-        });
+        .eq(
+            "status",
+            "published"
+        )
+        .order(
+            "created_at",
+            {
+                ascending: false
+            }
+        );
 
-    if (pageType === "home") {
-        query = query.limit(3);
+    if (
+        pageType === "home"
+    ) {
+        query = query.limit(6);
     }
 
-    const { data, error } = await query;
+    const {
+        data,
+        error
+    } = await query;
 
     if (error) {
         blogGrid.innerHTML = `
             <div class="empty-state error-state">
                 <span aria-hidden="true">!</span>
-                <h3>Unable to load diary entries.</h3>
+                <h3>
+                    Unable to load diary entries.
+                </h3>
                 <p>
                     Please refresh the page and try again.
                 </p>
@@ -314,15 +377,19 @@ async function loadPublishedPosts() {
         `;
 
         if (resultsSummary) {
-            resultsSummary.textContent = "";
+            resultsSummary.textContent =
+                "";
         }
 
         return;
     }
 
-    allPosts = data || [];
+    allPosts =
+        data || [];
 
-    renderPosts(allPosts);
+    renderPosts(
+        allPosts
+    );
 }
 
 if (idCard) {
@@ -331,10 +398,11 @@ if (idCard) {
         updateCardTilt
     );
 
-    document.documentElement.addEventListener(
-        "mouseleave",
-        resetCardTilt
-    );
+    document.documentElement
+        .addEventListener(
+            "mouseleave",
+            resetCardTilt
+        );
 
     window.addEventListener(
         "blur",
@@ -349,122 +417,196 @@ if (postSearch) {
     );
 }
 
-filterButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-        activeCategory =
-            button.dataset.filter || "All";
+filterButtons.forEach(
+    (button) => {
+        button.addEventListener(
+            "click",
+            () => {
+                activeCategory =
+                    button.dataset.filter ||
+                    "All";
 
-        filterButtons.forEach((item) => {
-            item.classList.toggle(
-                "active",
-                item === button
-            );
-        });
+                filterButtons.forEach(
+                    (item) => {
+                        item.classList.toggle(
+                            "active",
+                            item === button
+                        );
+                    }
+                );
 
-        filterPosts();
-    });
-});
+                filterPosts();
+            }
+        );
+    }
+);
 
 loadPublishedPosts();
+
 (() => {
     const revealSelector = [
-    ".section-top",
-    ".entry-chooser",
-    ".blog-card",
-    ".journal-paths-heading",
-    ".journal-path-card",
-    ".profile-photo",
-    ".profile-copy",
-    ".profile-details",
-    ".detail-card",
-    ".post-shell",
-    ".loading-state",
-    ".empty-state"
-].join(", ");
+        ".section-top",
+        ".entry-chooser",
+        ".blog-card",
+        ".journal-paths-heading",
+        ".journal-path-card",
+        ".profile-photo",
+        ".profile-copy",
+        ".profile-details",
+        ".detail-card",
+        ".post-shell",
+        ".loading-state",
+        ".empty-state"
+    ].join(", ");
 
-    const prefersReducedMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-    ).matches;
+    const prefersReducedMotion =
+        window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
 
     const revealObserver =
-        "IntersectionObserver" in window && !prefersReducedMotion
+        "IntersectionObserver" in window &&
+        !prefersReducedMotion
             ? new IntersectionObserver(
                   (entries, observer) => {
-                      entries.forEach((entry) => {
-                          if (!entry.isIntersecting) {
-                              return;
-                          }
+                      entries.forEach(
+                          (entry) => {
+                              if (
+                                  !entry.isIntersecting
+                              ) {
+                                  return;
+                              }
 
-                          entry.target.classList.add("is-visible");
-                          observer.unobserve(entry.target);
-                      });
+                              entry.target
+                                  .classList
+                                  .add(
+                                      "is-visible"
+                                  );
+
+                              observer.unobserve(
+                                  entry.target
+                              );
+                          }
+                      );
                   },
                   {
                       threshold: 0.12,
-                      rootMargin: "0px 0px -50px 0px"
+                      rootMargin:
+                          "0px 0px -50px 0px"
                   }
               )
             : null;
 
-    function registerRevealItems(root = document) {
+    function registerRevealItems(
+        root = document
+    ) {
         const elements = [];
 
         if (
             root instanceof Element &&
-            root.matches(revealSelector)
+            root.matches(
+                revealSelector
+            )
         ) {
             elements.push(root);
         }
 
-        if (root.querySelectorAll) {
+        if (
+            root.querySelectorAll
+        ) {
             elements.push(
-                ...root.querySelectorAll(revealSelector)
+                ...root.querySelectorAll(
+                    revealSelector
+                )
             );
         }
 
-        elements.forEach((element, index) => {
-            if (element.dataset.revealReady === "true") {
-                return;
+        elements.forEach(
+            (element, index) => {
+                if (
+                    element.dataset
+                        .revealReady ===
+                    "true"
+                ) {
+                    return;
+                }
+
+                element.dataset
+                    .revealReady =
+                    "true";
+
+                element.classList.add(
+                    "reveal-item"
+                );
+
+                const delay =
+                    Math.min(
+                        index % 6,
+                        5
+                    ) * 90;
+
+                element.style
+                    .setProperty(
+                        "--reveal-delay",
+                        `${delay}ms`
+                    );
+
+                if (
+                    revealObserver
+                ) {
+                    revealObserver.observe(
+                        element
+                    );
+                } else {
+                    element.classList.add(
+                        "is-visible"
+                    );
+                }
             }
-
-            element.dataset.revealReady = "true";
-            element.classList.add("reveal-item");
-
-            const delay = Math.min(index % 6, 5) * 90;
-
-            element.style.setProperty(
-                "--reveal-delay",
-                `${delay}ms`
-            );
-
-            if (revealObserver) {
-                revealObserver.observe(element);
-            } else {
-                element.classList.add("is-visible");
-            }
-        });
+        );
     }
 
     function startRevealAnimation() {
-        registerRevealItems(document);
+        registerRevealItems(
+            document
+        );
 
-        const pageObserver = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-                mutation.addedNodes.forEach((node) => {
-                    if (node instanceof Element) {
-                        registerRevealItems(node);
-                    }
-                });
-            });
-        });
+        const pageObserver =
+            new MutationObserver(
+                (mutations) => {
+                    mutations.forEach(
+                        (mutation) => {
+                            mutation.addedNodes
+                                .forEach(
+                                    (node) => {
+                                        if (
+                                            node instanceof
+                                            Element
+                                        ) {
+                                            registerRevealItems(
+                                                node
+                                            );
+                                        }
+                                    }
+                                );
+                        }
+                    );
+                }
+            );
 
-        pageObserver.observe(document.body, {
-            childList: true,
-            subtree: true
-        });
+        pageObserver.observe(
+            document.body,
+            {
+                childList: true,
+                subtree: true
+            }
+        );
     }
 
-    if (document.readyState === "loading") {
+    if (
+        document.readyState ===
+        "loading"
+    ) {
         document.addEventListener(
             "DOMContentLoaded",
             startRevealAnimation
@@ -473,22 +615,41 @@ loadPublishedPosts();
         startRevealAnimation();
     }
 })();
+
 (() => {
-    const source = document.getElementById("blogGrid");
-    const track = document.getElementById("homeCarouselTrack");
-    const recentList = document.getElementById("homeRecentList");
-    const dotsContainer = document.getElementById("homeCarouselDots");
-    const previousButton = document.getElementById(
-        "homeCarouselPrev"
-    );
-    const nextButton = document.getElementById(
-        "homeCarouselNext"
-    );
+    const source =
+        document.getElementById(
+            "blogGrid"
+        );
+
+    const track =
+        document.getElementById(
+            "homeCarouselTrack"
+        );
+
+    const dotsContainer =
+        document.getElementById(
+            "homeCarouselDots"
+        );
+
+    const previousButton =
+        document.getElementById(
+            "homeCarouselPrev"
+        );
+
+    const nextButton =
+        document.getElementById(
+            "homeCarouselNext"
+        );
+
+    const carouselMain =
+        document.querySelector(
+            ".home-carousel-main"
+        );
 
     if (
         !source ||
         !track ||
-        !recentList ||
         !dotsContainer ||
         !previousButton ||
         !nextButton
@@ -497,206 +658,423 @@ loadPublishedPosts();
     }
 
     let slides = [];
-    let recentButtons = [];
     let dotButtons = [];
     let currentIndex = 0;
-    let buildTimer;
+    let buildTimer = null;
+    let autoplayTimer = null;
+    let paused = false;
 
-    function showSlide(index) {
-        if (!slides.length) {
+    const autoplayDelay = 5000;
+
+    function updateCarousel(
+        index,
+        animate = true
+    ) {
+        if (
+            !slides.length
+        ) {
             return;
         }
 
         currentIndex =
-            (index + slides.length) % slides.length;
+            (
+                index +
+                slides.length
+            ) %
+            slides.length;
 
-        slides.forEach((slide, slideIndex) => {
-            const active = slideIndex === currentIndex;
+        if (
+            reducedMotion ||
+            !animate
+        ) {
+            track.style.transition =
+                "none";
+        } else {
+            track.style.transition =
+                "";
+        }
 
-            slide.classList.toggle("is-active", active);
-            slide.setAttribute(
-                "aria-hidden",
-                String(!active)
-            );
-        });
+        track.style.transform =
+            `translate3d(-${currentIndex * 100}%, 0, 0)`;
 
-        recentButtons.forEach((button, buttonIndex) => {
-            button.classList.toggle(
-                "is-active",
-                buttonIndex === currentIndex
-            );
-        });
+        slides.forEach(
+            (slide, slideIndex) => {
+                const active =
+                    slideIndex ===
+                    currentIndex;
 
-        dotButtons.forEach((button, buttonIndex) => {
-            const active = buttonIndex === currentIndex;
+                slide.classList.toggle(
+                    "is-active",
+                    active
+                );
 
-            button.classList.toggle("is-active", active);
-            button.setAttribute(
-                "aria-current",
-                active ? "true" : "false"
-            );
-        });
-    }
-
-    function createRecentItem(card, index) {
-        const button = document.createElement("button");
-        const category = document.createElement("span");
-        const title = document.createElement("strong");
-        const date = document.createElement("small");
-
-        const categoryText =
-            card.querySelector(".type")?.textContent.trim() ||
-            "Diary Entry";
-
-        const titleText =
-            card.querySelector("h3")?.textContent.trim() ||
-            `Entry ${index + 1}`;
-
-        const dateText =
-            card
-                .querySelector(".post-date")
-                ?.textContent.trim() || "";
-
-        button.type = "button";
-        button.className = "home-recent-item";
-        button.setAttribute(
-            "aria-label",
-            `Show ${titleText}`
+                slide.setAttribute(
+                    "aria-hidden",
+                    String(!active)
+                );
+            }
         );
 
-        category.textContent = categoryText;
-        title.textContent = titleText;
-        date.textContent = dateText;
+        dotButtons.forEach(
+            (button, buttonIndex) => {
+                const active =
+                    buttonIndex ===
+                    currentIndex;
 
-        button.append(category, title, date);
+                button.classList.toggle(
+                    "is-active",
+                    active
+                );
 
-        button.addEventListener("click", () => {
-            showSlide(index);
-        });
+                button.setAttribute(
+                    "aria-current",
+                    active
+                        ? "true"
+                        : "false"
+                );
+            }
+        );
 
-        return button;
+        if (
+            !animate &&
+            !reducedMotion
+        ) {
+            requestAnimationFrame(
+                () => {
+                    requestAnimationFrame(
+                        () => {
+                            track.style
+                                .transition =
+                                "";
+                        }
+                    );
+                }
+            );
+        }
     }
 
-    function createDot(index, title) {
-        const button = document.createElement("button");
+    function stopAutoplay() {
+        if (
+            autoplayTimer
+        ) {
+            clearInterval(
+                autoplayTimer
+            );
 
-        button.type = "button";
-        button.className = "home-carousel-dot";
+            autoplayTimer = null;
+        }
+    }
+
+    function startAutoplay() {
+        stopAutoplay();
+
+        if (
+            reducedMotion ||
+            paused ||
+            slides.length <= 1
+        ) {
+            return;
+        }
+
+        autoplayTimer =
+            setInterval(
+                () => {
+                    updateCarousel(
+                        currentIndex + 1
+                    );
+                },
+                autoplayDelay
+            );
+    }
+
+    function resetAutoplay() {
+        stopAutoplay();
+        startAutoplay();
+    }
+
+    function createDot(
+        index,
+        title
+    ) {
+        const button =
+            document.createElement(
+                "button"
+            );
+
+        button.type =
+            "button";
+
+        button.className =
+            "home-carousel-dot";
+
         button.setAttribute(
             "aria-label",
             `Show ${title}`
         );
 
-        button.addEventListener("click", () => {
-            showSlide(index);
-        });
+        button.addEventListener(
+            "click",
+            () => {
+                updateCarousel(
+                    index
+                );
+
+                resetAutoplay();
+            }
+        );
 
         return button;
     }
 
     function buildCarousel() {
-        const cards = Array.from(
-            source.querySelectorAll(".blog-card")
-        ).slice(0, 6);
-
-        if (!cards.length) {
-            const message = source.querySelector(
-                ".empty-state, .error-state"
+        const cards =
+            Array.from(
+                source.querySelectorAll(
+                    ".blog-card"
+                )
+            ).slice(
+                0,
+                6
             );
 
+        if (
+            !cards.length
+        ) {
+            const message =
+                source.querySelector(
+                    ".empty-state, .error-state"
+                );
+
             if (message) {
-                track.innerHTML = "";
-                track.appendChild(message.cloneNode(true));
+                track.innerHTML =
+                    "";
+
+                track.appendChild(
+                    message.cloneNode(
+                        true
+                    )
+                );
             }
+
+            stopAutoplay();
 
             return;
         }
 
-        track.innerHTML = "";
-        recentList.innerHTML = "";
-        dotsContainer.innerHTML = "";
+        stopAutoplay();
+
+        track.innerHTML =
+            "";
+
+        dotsContainer.innerHTML =
+            "";
 
         slides = [];
-        recentButtons = [];
         dotButtons = [];
 
-        cards.forEach((card, index) => {
-            const slide = document.createElement("div");
-            const cardCopy = card.cloneNode(true);
+        cards.forEach(
+            (card, index) => {
+                const slide =
+                    document.createElement(
+                        "div"
+                    );
 
-            cardCopy.classList.remove(
-                "reveal-item",
-                "is-visible"
-            );
+                const cardCopy =
+                    card.cloneNode(
+                        true
+                    );
 
-            cardCopy.removeAttribute("data-reveal-ready");
-            cardCopy.style.removeProperty(
-                "--reveal-delay"
-            );
+                cardCopy.classList.remove(
+                    "reveal-item",
+                    "is-visible"
+                );
 
-            slide.className = "home-carousel-slide";
-            slide.appendChild(cardCopy);
-            track.appendChild(slide);
+                cardCopy.removeAttribute(
+                    "data-reveal-ready"
+                );
 
-            const title =
-                card.querySelector("h3")?.textContent.trim() ||
-                `Entry ${index + 1}`;
+                cardCopy.style
+                    .removeProperty(
+                        "--reveal-delay"
+                    );
 
-            const recentItem = createRecentItem(
-                card,
-                index
-            );
+                slide.className =
+                    `home-carousel-slide ${getToneClass(index)}`;
 
-            const dot = createDot(index, title);
+                slide.appendChild(
+                    cardCopy
+                );
 
-            recentList.appendChild(recentItem);
-            dotsContainer.appendChild(dot);
+                track.appendChild(
+                    slide
+                );
 
-            slides.push(slide);
-            recentButtons.push(recentItem);
-            dotButtons.push(dot);
-        });
+                const title =
+                    card.querySelector(
+                        "h3"
+                    )?.textContent
+                        .trim() ||
+                    `Entry ${index + 1}`;
 
-        showSlide(0);
+                const dot =
+                    createDot(
+                        index,
+                        title
+                    );
+
+                dotsContainer.appendChild(
+                    dot
+                );
+
+                slides.push(
+                    slide
+                );
+
+                dotButtons.push(
+                    dot
+                );
+            }
+        );
+
+        updateCarousel(
+            0,
+            false
+        );
+
+        startAutoplay();
     }
 
     function scheduleBuild() {
-        clearTimeout(buildTimer);
+        clearTimeout(
+            buildTimer
+        );
 
-        buildTimer = setTimeout(() => {
-            buildCarousel();
-        }, 80);
+        buildTimer =
+            setTimeout(
+                () => {
+                    buildCarousel();
+                },
+                80
+            );
     }
 
-    previousButton.addEventListener("click", () => {
-        showSlide(currentIndex - 1);
-    });
+    previousButton
+        .addEventListener(
+            "click",
+            () => {
+                updateCarousel(
+                    currentIndex - 1
+                );
 
-    nextButton.addEventListener("click", () => {
-        showSlide(currentIndex + 1);
-    });
+                resetAutoplay();
+            }
+        );
 
-    const observer = new MutationObserver(() => {
-        scheduleBuild();
-    });
+    nextButton
+        .addEventListener(
+            "click",
+            () => {
+                updateCarousel(
+                    currentIndex + 1
+                );
 
-    observer.observe(source, {
-        childList: true,
-        subtree: true
-    });
+                resetAutoplay();
+            }
+        );
 
-    scheduleBuild();
-})();
-(() => {
-    const nextButton = document.getElementById(
-        "homeCarouselNext"
+    if (carouselMain) {
+        carouselMain
+            .addEventListener(
+                "mouseenter",
+                () => {
+                    paused = true;
+                    stopAutoplay();
+                }
+            );
+
+        carouselMain
+            .addEventListener(
+                "mouseleave",
+                () => {
+                    paused = false;
+                    startAutoplay();
+                }
+            );
+
+        carouselMain
+            .addEventListener(
+                "focusin",
+                () => {
+                    paused = true;
+                    stopAutoplay();
+                }
+            );
+
+        carouselMain
+            .addEventListener(
+                "focusout",
+                () => {
+                    paused = false;
+                    startAutoplay();
+                }
+            );
+
+        carouselMain
+            .addEventListener(
+                "keydown",
+                (event) => {
+                    if (
+                        event.key ===
+                        "ArrowLeft"
+                    ) {
+                        updateCarousel(
+                            currentIndex - 1
+                        );
+
+                        resetAutoplay();
+                    }
+
+                    if (
+                        event.key ===
+                        "ArrowRight"
+                    ) {
+                        updateCarousel(
+                            currentIndex + 1
+                        );
+
+                        resetAutoplay();
+                    }
+                }
+            );
+    }
+
+    document.addEventListener(
+        "visibilitychange",
+        () => {
+            if (
+                document.hidden
+            ) {
+                stopAutoplay();
+            } else {
+                startAutoplay();
+            }
+        }
     );
 
-    if (!nextButton) {
-        return;
-    }
+    const observer =
+        new MutationObserver(
+            () => {
+                scheduleBuild();
+            }
+        );
 
-    setInterval(() => {
-        nextButton.click();
-    }, 3000);
+    observer.observe(
+        source,
+        {
+            childList: true,
+            subtree: true
+        }
+    );
+
+    scheduleBuild();
 })();
