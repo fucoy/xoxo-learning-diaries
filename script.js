@@ -20,13 +20,16 @@ function updateCardTilt(event) {
         return;
     }
 
-    const cardBounds = idCard.getBoundingClientRect();
+    const cardBounds =
+        idCard.getBoundingClientRect();
 
     const cardCenterX =
-        cardBounds.left + cardBounds.width / 2;
+        cardBounds.left +
+        cardBounds.width / 2;
 
     const cardCenterY =
-        cardBounds.top + cardBounds.height / 2;
+        cardBounds.top +
+        cardBounds.height / 2;
 
     const horizontalMovement =
         (event.clientX - cardCenterX) /
@@ -38,12 +41,18 @@ function updateCardTilt(event) {
 
     const rotateY = Math.max(
         -5,
-        Math.min(5, horizontalMovement * 8)
+        Math.min(
+            5,
+            horizontalMovement * 8
+        )
     );
 
     const rotateX = Math.max(
         -3,
-        Math.min(3, verticalMovement * -6)
+        Math.min(
+            3,
+            verticalMovement * -6
+        )
     );
 
     idCard.style.setProperty(
@@ -91,9 +100,14 @@ function escapeHTML(value = "") {
 }
 
 function formatDate(dateValue) {
-    const date = new Date(dateValue);
+    const date =
+        new Date(dateValue);
 
-    if (Number.isNaN(date.getTime())) {
+    if (
+        Number.isNaN(
+            date.getTime()
+        )
+    ) {
         return "";
     }
 
@@ -136,7 +150,8 @@ function validImageUrl(value) {
         return "";
     }
 
-    const imageUrl = value.trim();
+    const imageUrl =
+        value.trim();
 
     const allowedPrefixes = [
         "https://",
@@ -149,7 +164,9 @@ function validImageUrl(value) {
     const valid =
         allowedPrefixes.some(
             (prefix) =>
-                imageUrl.startsWith(prefix)
+                imageUrl.startsWith(
+                    prefix
+                )
         );
 
     return valid
@@ -224,70 +241,71 @@ function renderPosts(posts) {
 
     blogGrid.innerHTML =
         posts
-            .map((post, index) => {
-                const imageUrl =
-                    validImageUrl(
-                        post.cover_image
-                    );
+            .map(
+                (post, index) => {
+                    const imageUrl =
+                        validImageUrl(
+                            post.cover_image
+                        );
 
-                const imageMarkup =
-                    imageUrl
-                        ? `
-                            <div class="blog-cover">
-                                <img
-                                    src="${escapeHTML(imageUrl)}"
-                                    alt="${escapeHTML(post.title)}"
-                                    loading="lazy"
-                                    decoding="async"
+                    const imageMarkup =
+                        imageUrl
+                            ? `
+                                <div class="blog-cover">
+                                    <img
+                                        src="${escapeHTML(imageUrl)}"
+                                        alt="${escapeHTML(post.title)}"
+                                        loading="lazy"
+                                        decoding="async"
+                                    >
+                                </div>
+                            `
+                            : "";
+
+                    return `
+                        <article class="blog-card ${getCardClass(index)}">
+
+                            ${imageMarkup}
+
+                            <div class="blog-card-body">
+
+                                <div class="blog-card-top">
+
+                                    <p class="number">
+                                        ${String(index + 1).padStart(2, "0")}
+                                    </p>
+
+                                    <p class="type">
+                                        ${escapeHTML(post.category)}
+                                    </p>
+
+                                </div>
+
+                                <h3>
+                                    ${escapeHTML(post.title)}
+                                </h3>
+
+                                <p class="post-date">
+                                    ${formatDate(post.created_at)}
+                                </p>
+
+                                <p class="card-description">
+                                    ${escapeHTML(post.excerpt)}
+                                </p>
+
+                                <a
+                                    href="post.html?id=${encodeURIComponent(post.id)}"
+                                    class="read-more"
                                 >
-                            </div>
-                        `
-                        : "";
-
-                return `
-                    <article class="blog-card ${getCardClass(index)}">
-
-                        ${imageMarkup}
-
-                        <div class="blog-card-body">
-
-                            <div class="blog-card-top">
-
-                                <p class="number">
-                                    ${String(index + 1).padStart(2, "0")}
-                                </p>
-
-                                <p class="type">
-                                    ${escapeHTML(post.category)}
-                                </p>
+                                    READ ENTRY →
+                                </a>
 
                             </div>
 
-                            <h3>
-                                ${escapeHTML(post.title)}
-                            </h3>
-
-                            <p class="post-date">
-                                ${formatDate(post.created_at)}
-                            </p>
-
-                            <p class="card-description">
-                                ${escapeHTML(post.excerpt)}
-                            </p>
-
-                            <a
-                                href="post.html?id=${encodeURIComponent(post.id)}"
-                                class="read-more"
-                                aria-label="Read ${escapeHTML(post.title)}"
-                            >
-                                READ ENTRY →
-                            </a>
-
-                        </div>
-
-                    </article>
-                `;
-            })
+                        </article>
+                    `;
+                }
+            )
             .join("");
 }
 
@@ -295,14 +313,16 @@ function filterPosts() {
     const searchText =
         postSearch?.value
             .trim()
-            .toLowerCase() || "";
+            .toLowerCase() ||
+        "";
 
     const filteredPosts =
         allPosts.filter(
             (post) => {
                 const matchesCategory =
                     activeCategory === "All" ||
-                    post.category === activeCategory;
+                    post.category ===
+                        activeCategory;
 
                 const searchableText = [
                     post.title,
@@ -336,26 +356,28 @@ async function loadPublishedPosts() {
         return;
     }
 
-    let query = supabase
-        .from("posts")
-        .select(
-            "id, title, category, excerpt, cover_image, created_at"
-        )
-        .eq(
-            "status",
-            "published"
-        )
-        .order(
-            "created_at",
-            {
-                ascending: false
-            }
-        );
+    let query =
+        supabase
+            .from("posts")
+            .select(
+                "id, title, category, excerpt, cover_image, created_at"
+            )
+            .eq(
+                "status",
+                "published"
+            )
+            .order(
+                "created_at",
+                {
+                    ascending: false
+                }
+            );
 
     if (
         pageType === "home"
     ) {
-        query = query.limit(6);
+        query =
+            query.limit(6);
     }
 
     const {
@@ -444,179 +466,6 @@ filterButtons.forEach(
 loadPublishedPosts();
 
 (() => {
-    const revealSelector = [
-        ".section-top",
-        ".entry-chooser",
-        ".blog-card",
-        ".journal-paths-heading",
-        ".journal-path-card",
-        ".profile-photo",
-        ".profile-copy",
-        ".profile-details",
-        ".detail-card",
-        ".post-shell",
-        ".loading-state",
-        ".empty-state"
-    ].join(", ");
-
-    const prefersReducedMotion =
-        window.matchMedia(
-            "(prefers-reduced-motion: reduce)"
-        ).matches;
-
-    const revealObserver =
-        "IntersectionObserver" in window &&
-        !prefersReducedMotion
-            ? new IntersectionObserver(
-                  (entries, observer) => {
-                      entries.forEach(
-                          (entry) => {
-                              if (
-                                  !entry.isIntersecting
-                              ) {
-                                  return;
-                              }
-
-                              entry.target
-                                  .classList
-                                  .add(
-                                      "is-visible"
-                                  );
-
-                              observer.unobserve(
-                                  entry.target
-                              );
-                          }
-                      );
-                  },
-                  {
-                      threshold: 0.12,
-                      rootMargin:
-                          "0px 0px -50px 0px"
-                  }
-              )
-            : null;
-
-    function registerRevealItems(
-        root = document
-    ) {
-        const elements = [];
-
-        if (
-            root instanceof Element &&
-            root.matches(
-                revealSelector
-            )
-        ) {
-            elements.push(root);
-        }
-
-        if (
-            root.querySelectorAll
-        ) {
-            elements.push(
-                ...root.querySelectorAll(
-                    revealSelector
-                )
-            );
-        }
-
-        elements.forEach(
-            (element, index) => {
-                if (
-                    element.dataset
-                        .revealReady ===
-                    "true"
-                ) {
-                    return;
-                }
-
-                element.dataset
-                    .revealReady =
-                    "true";
-
-                element.classList.add(
-                    "reveal-item"
-                );
-
-                const delay =
-                    Math.min(
-                        index % 6,
-                        5
-                    ) * 90;
-
-                element.style
-                    .setProperty(
-                        "--reveal-delay",
-                        `${delay}ms`
-                    );
-
-                if (
-                    revealObserver
-                ) {
-                    revealObserver.observe(
-                        element
-                    );
-                } else {
-                    element.classList.add(
-                        "is-visible"
-                    );
-                }
-            }
-        );
-    }
-
-    function startRevealAnimation() {
-        registerRevealItems(
-            document
-        );
-
-        const pageObserver =
-            new MutationObserver(
-                (mutations) => {
-                    mutations.forEach(
-                        (mutation) => {
-                            mutation.addedNodes
-                                .forEach(
-                                    (node) => {
-                                        if (
-                                            node instanceof
-                                            Element
-                                        ) {
-                                            registerRevealItems(
-                                                node
-                                            );
-                                        }
-                                    }
-                                );
-                        }
-                    );
-                }
-            );
-
-        pageObserver.observe(
-            document.body,
-            {
-                childList: true,
-                subtree: true
-            }
-        );
-    }
-
-    if (
-        document.readyState ===
-        "loading"
-    ) {
-        document.addEventListener(
-            "DOMContentLoaded",
-            startRevealAnimation
-        );
-    } else {
-        startRevealAnimation();
-    }
-})();
-
-(() => {
     const source =
         document.getElementById(
             "blogGrid"
@@ -642,11 +491,6 @@ loadPublishedPosts();
             "homeCarouselNext"
         );
 
-    const carouselMain =
-        document.querySelector(
-            ".home-carousel-main"
-        );
-
     if (
         !source ||
         !track ||
@@ -658,21 +502,15 @@ loadPublishedPosts();
     }
 
     let slides = [];
-    let dotButtons = [];
+    let dots = [];
     let currentIndex = 0;
     let buildTimer = null;
-    let autoplayTimer = null;
-    let paused = false;
+    let autoTimer = null;
 
-    const autoplayDelay = 5000;
+    const delay = 4500;
 
-    function updateCarousel(
-        index,
-        animate = true
-    ) {
-        if (
-            !slides.length
-        ) {
+    function showSlide(index) {
+        if (!slides.length) {
             return;
         }
 
@@ -682,20 +520,6 @@ loadPublishedPosts();
                 slides.length
             ) %
             slides.length;
-
-        if (
-            reducedMotion ||
-            !animate
-        ) {
-            track.style.transition =
-                "none";
-        } else {
-            track.style.transition =
-                "";
-        }
-
-        track.style.transform =
-            `translate3d(-${currentIndex * 100}%, 0, 0)`;
 
         slides.forEach(
             (slide, slideIndex) => {
@@ -715,18 +539,18 @@ loadPublishedPosts();
             }
         );
 
-        dotButtons.forEach(
-            (button, buttonIndex) => {
+        dots.forEach(
+            (dot, dotIndex) => {
                 const active =
-                    buttonIndex ===
+                    dotIndex ===
                     currentIndex;
 
-                button.classList.toggle(
+                dot.classList.toggle(
                     "is-active",
                     active
                 );
 
-                button.setAttribute(
+                dot.setAttribute(
                     "aria-current",
                     active
                         ? "true"
@@ -734,62 +558,42 @@ loadPublishedPosts();
                 );
             }
         );
-
-        if (
-            !animate &&
-            !reducedMotion
-        ) {
-            requestAnimationFrame(
-                () => {
-                    requestAnimationFrame(
-                        () => {
-                            track.style
-                                .transition =
-                                "";
-                        }
-                    );
-                }
-            );
-        }
     }
 
-    function stopAutoplay() {
-        if (
-            autoplayTimer
-        ) {
+    function stopAutoSlide() {
+        if (autoTimer) {
             clearInterval(
-                autoplayTimer
+                autoTimer
             );
 
-            autoplayTimer = null;
+            autoTimer = null;
         }
     }
 
-    function startAutoplay() {
-        stopAutoplay();
+    function startAutoSlide() {
+        stopAutoSlide();
 
         if (
             reducedMotion ||
-            paused ||
             slides.length <= 1
         ) {
             return;
         }
 
-        autoplayTimer =
+        autoTimer =
             setInterval(
                 () => {
-                    updateCarousel(
+                    showSlide(
                         currentIndex + 1
                     );
                 },
-                autoplayDelay
+                delay
             );
     }
 
-    function resetAutoplay() {
-        stopAutoplay();
-        startAutoplay();
+    function restartAutoSlide() {
+        stopAutoSlide();
+        startAutoSlide();
     }
 
     function createDot(
@@ -815,11 +619,8 @@ loadPublishedPosts();
         button.addEventListener(
             "click",
             () => {
-                updateCarousel(
-                    index
-                );
-
-                resetAutoplay();
+                showSlide(index);
+                restartAutoSlide();
             }
         );
 
@@ -837,40 +638,18 @@ loadPublishedPosts();
                 6
             );
 
-        if (
-            !cards.length
-        ) {
-            const message =
-                source.querySelector(
-                    ".empty-state, .error-state"
-                );
-
-            if (message) {
-                track.innerHTML =
-                    "";
-
-                track.appendChild(
-                    message.cloneNode(
-                        true
-                    )
-                );
-            }
-
-            stopAutoplay();
-
+        if (!cards.length) {
+            stopAutoSlide();
             return;
         }
 
-        stopAutoplay();
+        stopAutoSlide();
 
-        track.innerHTML =
-            "";
-
-        dotsContainer.innerHTML =
-            "";
+        track.innerHTML = "";
+        dotsContainer.innerHTML = "";
 
         slides = [];
-        dotButtons = [];
+        dots = [];
 
         cards.forEach(
             (card, index) => {
@@ -910,9 +689,9 @@ loadPublishedPosts();
                 );
 
                 const title =
-                    card.querySelector(
-                        "h3"
-                    )?.textContent
+                    card
+                        .querySelector("h3")
+                        ?.textContent
                         .trim() ||
                     `Entry ${index + 1}`;
 
@@ -930,18 +709,15 @@ loadPublishedPosts();
                     slide
                 );
 
-                dotButtons.push(
+                dots.push(
                     dot
                 );
             }
         );
 
-        updateCarousel(
-            0,
-            false
-        );
+        showSlide(0);
 
-        startAutoplay();
+        startAutoSlide();
     }
 
     function scheduleBuild() {
@@ -951,10 +727,8 @@ loadPublishedPosts();
 
         buildTimer =
             setTimeout(
-                () => {
-                    buildCarousel();
-                },
-                80
+                buildCarousel,
+                100
             );
     }
 
@@ -962,11 +736,11 @@ loadPublishedPosts();
         .addEventListener(
             "click",
             () => {
-                updateCarousel(
+                showSlide(
                     currentIndex - 1
                 );
 
-                resetAutoplay();
+                restartAutoSlide();
             }
         );
 
@@ -974,79 +748,13 @@ loadPublishedPosts();
         .addEventListener(
             "click",
             () => {
-                updateCarousel(
+                showSlide(
                     currentIndex + 1
                 );
 
-                resetAutoplay();
+                restartAutoSlide();
             }
         );
-
-    if (carouselMain) {
-        carouselMain
-            .addEventListener(
-                "mouseenter",
-                () => {
-                    paused = true;
-                    stopAutoplay();
-                }
-            );
-
-        carouselMain
-            .addEventListener(
-                "mouseleave",
-                () => {
-                    paused = false;
-                    startAutoplay();
-                }
-            );
-
-        carouselMain
-            .addEventListener(
-                "focusin",
-                () => {
-                    paused = true;
-                    stopAutoplay();
-                }
-            );
-
-        carouselMain
-            .addEventListener(
-                "focusout",
-                () => {
-                    paused = false;
-                    startAutoplay();
-                }
-            );
-
-        carouselMain
-            .addEventListener(
-                "keydown",
-                (event) => {
-                    if (
-                        event.key ===
-                        "ArrowLeft"
-                    ) {
-                        updateCarousel(
-                            currentIndex - 1
-                        );
-
-                        resetAutoplay();
-                    }
-
-                    if (
-                        event.key ===
-                        "ArrowRight"
-                    ) {
-                        updateCarousel(
-                            currentIndex + 1
-                        );
-
-                        resetAutoplay();
-                    }
-                }
-            );
-    }
 
     document.addEventListener(
         "visibilitychange",
@@ -1054,18 +762,16 @@ loadPublishedPosts();
             if (
                 document.hidden
             ) {
-                stopAutoplay();
+                stopAutoSlide();
             } else {
-                startAutoplay();
+                startAutoSlide();
             }
         }
     );
 
     const observer =
         new MutationObserver(
-            () => {
-                scheduleBuild();
-            }
+            scheduleBuild
         );
 
     observer.observe(
