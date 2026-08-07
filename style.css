@@ -3026,3 +3026,25 @@ footer {
 .blog-card.tone-cream {
     background: #f7f1e7;
 }
+.home-carousel-slide .blog-card,
+.home-carousel-slide .blog-card.reveal-item,
+.home-carousel-slide .blog-card.is-visible {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+}
+
+.home-carousel-slide .blog-card {
+    display: grid !important;
+}
+
+.home-carousel-slide {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.home-carousel-slide .blog-card-body,
+.home-carousel-slide .blog-cover {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
